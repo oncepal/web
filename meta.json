@@ -1,0 +1,6 @@
+{
+  "name": "Once Pal",
+  "description": "Once Pal monorepo with some useful library",
+  "featured": true,
+  "template": "https://vercel.com/templates/react/turborepo-design-system"
+}

@@ -1,0 +1,94 @@
+{
+  "name": "@opui/react",
+  "version": "0.0.0",  "type": "module",
+  "description": "🚀 The React UI tools helps you create the best web app.",
+  "main": "build/index.umd.js",
+  "module": "build/index.js",
+  "files": [
+    "build"
+  ],
+  "exports": {
+    ".": {
+      "types": "./build/typescript-config/dist/src/index.d.ts",
+      "import": "./build/index.js",
+      "require": "./build/index.umd.cjs"
+    }
+  },
+  "types": "build/index.d.ts",
+  "scripts": {
+    "dev": "rollup -wc rollup.config.js",
+    "build": "cross-env NODE_ENV=development && rollup -c rollup.config.js",
+    "build:prod": "cross-env NODE_ENV=production && rollup -c rollup.config.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oncepal/opui.git"
+  },
+  "keywords": [
+    "opui",
+    "emotion",
+    "mobile",
+    "components",
+    "ui components",
+    "react"
+  ],
+  "author": {
+    "name": "oncepal"
+  },
+
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oncepal/opui/issues"
+  },
+  "size-limit": [
+    {
+      "path": "build/index.js",
+      "limit": "15 KB"
+    }
+  ],
+  "homepage": "https://github.com/oncepal/opui#readme",
+  "devDependencies": {
+    "@oncepal/typescript-config": "workspace:*",
+    "@babel/core": "^7.18.5",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-image": "^3.0.3",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@size-limit/preset-small-lib": "^5.0.5",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^13.0.0",
+    "@types/jest": "^26.0.24",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "identity-obj-proxy": "^3.0.0",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "jest": "^29.0.0",
+    "prettier": "^2.5.1",
+    "rollup": "^4.12.0",
+    "rollup-plugin-filesize": "^9.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "size-limit": "^5.0.5",
+    "ts-jest": "^29.2.4",
+    "tslib": "^2.4.0",
+    "typescript": "^5.3.3",
+    "framer-motion": "^11.2.11",
+    "@emotion/react": ">=11.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "framer-motion": "^11.2.11",
+    "@emotion/react": ">=11.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@oncepal/hooks": "workspace:*"
+  }
+}
