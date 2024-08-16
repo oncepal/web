@@ -1,6 +1,4 @@
-# Turborepo react-native starter
-
-This is an Turborepo.
+# ONCEPAL web
 
 ## Using this repo
 
@@ -13,7 +11,7 @@ pnpm run dev
 
 ## What's inside?
 
-This Turborepo includes the following packages/apps:
+This repo includes the following packages/apps:
 
 ### Apps and Packages
 
