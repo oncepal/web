@@ -1,11 +1,13 @@
 {
   "private": true,
   "scripts": {
-    "build:hooks": "turbo run dev --filter=@oncepal/hooks",
+    "init": "turbo run build --filter=@oncepal/utils --filter=@oncepal/charts --filter=@oncepal/ui",
     "dev:ui": "turbo run dev --filter=@opui/react",
     "dev:native": "turbo run dev --filter=@oncepal/native",
     "dev:h5": "turbo run dev --filter=@oncepal/h5",
     "dev:admin": "turbo run dev --filter=@oncepal/admin",
+    "dev:test": "turbo run dev --filter=@oncepal/test",
+    "dev:charts": "turbo run dev --filter=@oncepal/charts",
     "build": "turbo run build",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"

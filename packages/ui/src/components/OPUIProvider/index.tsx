@@ -2,7 +2,7 @@ import { ThemeProvider, Global, CSSObject } from '@emotion/react';
 import { useMemo, useLayoutEffect, useState, useInsertionEffect } from 'react';
 import { globalStyles } from '../../styles/global';
 import { defaultTheme, Theme } from '../../styles/themes';
-import { useCSSLink, useMerge } from '@oncepal/hooks';
+import { useCSSLink, useMerge } from '@oncepal/utils';
 
 type OPUIProviderProps = {
   children?: React.ReactNode;

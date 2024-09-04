@@ -1,14 +1,15 @@
 import {Button, OPUIProvider} from '@oncepal/ui'
-import { vis } from '@oncepal/charts'
+import Charts from './components/Charts';
+
 export default function Page() {
 
-    
+  
 
 
   return (
     <OPUIProvider>
       <Button>hello world</Button>
-      <div id="root6"></div>
+     <Charts/>
     </OPUIProvider>
   );
 }

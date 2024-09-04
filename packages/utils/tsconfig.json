@@ -1,0 +1,5 @@
+{
+  "extends": "@oncepal/typescript-config/rollup.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
+}

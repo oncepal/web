@@ -1,5 +1,5 @@
 {
-  "name": "@opui/react",
+  "name": "@oncepal/ui",
   "version": "0.0.0",  "type": "module",
   "description": "🚀 The React UI tools helps you create the best web app.",
   "main": "build/index.umd.js",
@@ -89,6 +89,6 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@oncepal/hooks": "workspace:*"
+    "@oncepal/utils": "workspace:*"
   }
 }

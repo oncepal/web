@@ -5,7 +5,7 @@ import { ComponentBaseProps, Themed } from '../props';
 
 import { useThemedCSS, useCSS, useTheme } from '../../styles/hooks';
 
-import { useDebounceFn } from '@oncepal/hooks';
+import { useDebounceFn } from '@oncepal/utils';
 import { useState } from 'react';
 
 type FabProps = ComponentBaseProps &

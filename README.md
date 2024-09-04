@@ -8,22 +8,31 @@ npm install -g pnpm
 npm install -g turbo
 ```
 
-2. 拉项目代码，安装依赖，查看package.json运行对应项目:
+2. 安装依赖，初始化设置
 
 ```sh
 pnpm i
+pnpm run init
+```
+3. 查看package.json运行对应项目:
+
+```sh
 pnpm run dev:?
 ```
+## 有些什么？
 
-## 这个项目有些什么？
+### 项目
 
-### Apps 和 Packages
+- `@oncepal/native`: 一个 [react-native](https://reactnative.dev/) app 包括 [expo](https://docs.expo.dev/)
+- `@oncepal/admin`: 一个 [Next.js](https://nextjs.org/) 后台管理项目
+- `@oncepal/h5`: 一个 [Next.js](https://nextjs.org/) h5 移动端项目
+- `@oncepal/test`: 一个 [Next.js](https://nextjs.org/) 用来测试各种包的项目，忽略提交自测lib用
 
-- `native`: 一个 [react-native](https://reactnative.dev/) app 包括 [expo](https://docs.expo.dev/)
-- `admin`: 一个 [Next.js](https://nextjs.org/) 后台管理项目
-- `h5`: 一个 [Next.js](https://nextjs.org/) h5 移动端项目
-- `@opui/react`: 一个 admin 和 h5 使用的组件库，未来可开源独立发布 
-- `@oncepal/hooks`: 一个内部使用的 hooks 工具库
+### 类库
+
+- `@oncepal/ui`: 一个 admin 和 h5 使用的ui库，可开源独立发布 
+- `@oncepal/charts`: 一个 admin 和 h5 使用的图表库，可开源独立发布 
+- `@oncepal/utils`: 一个内部使用的 hooks 工具库
 - `@oncepal/typescript-config`: `tsconfig.json` ts统一配置中心
 
 所有 package/app 都是 100% [TypeScript](https://www.typescriptlang.org/).
