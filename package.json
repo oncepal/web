@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "init": "turbo run build --filter=@oncepal/utils --filter=@oncepal/charts --filter=@oncepal/ui",
-    "dev:ui": "turbo run dev --filter=@opui/react",
+    "dev:ui": "turbo run dev --filter=@oncepal/ui",
     "dev:native": "turbo run dev --filter=@oncepal/native",
     "dev:h5": "turbo run dev --filter=@oncepal/h5",
     "dev:admin": "turbo run dev --filter=@oncepal/admin",

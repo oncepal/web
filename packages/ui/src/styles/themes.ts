@@ -91,7 +91,7 @@ export const defaultTheme: Theme = {
   isDarkMode: false,
   container: {},
   button: {
-    padding:`${tokens.spacings.xs} ${tokens.spacings.md}`
+    padding:`${tokens.spacings.xs} ${tokens.spacings.sm}`
   },
   text:{
     lineHeight:tokens.lineHeights.xs

@@ -9,6 +9,7 @@ export default function Page() {
   return (
     <OPUIProvider>
       <Button>hello world</Button>
+      <Button>hello world</Button>
      <Charts/>
     </OPUIProvider>
   );
