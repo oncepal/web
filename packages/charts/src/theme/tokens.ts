@@ -5,12 +5,14 @@ const vars = {
   color: {
     primary: '#5568FE',
     secondary: '#FB7173',
-    black: '#1a1a1a',
-    grey: '#7d7d7d',
+    black: 'rgb(9, 9, 11)',
+    grey: 'rgb(113, 113, 122)',
+
+    greyLight: 'rgba(228, 228, 231, 0.5)',
+    white: '#fff',    
+    
     red: '#e32b3a',
     accent: '#56538D',
-    greyLight: '#B8BCBF',
-    white: '#fff',
   },
   transition: {
     time: '.25s',

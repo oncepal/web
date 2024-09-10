@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 import { Dimensions } from '../core/dimensions'
-import createVisor, { VisOptions } from '../core/visor'
+import createRenderer, { VisOptions } from '../core/renderer'
 type SeriesDataItem = {
   [key: string]: number
 }
@@ -41,8 +41,8 @@ const StackedBarChart = (container: HTMLElement, data: SeriesDataItem[], options
       xType = d3.scaleBand,
       yType = d3.scaleLinear,
       zType = d3.scaleOrdinal,
-      xRange = [0, dimensions.visorWidth],
-      yRange = [dimensions.visorHeight, 0],
+      xRange = [0, dimensions.rendererWidth],
+      yRange = [dimensions.rendererHeight, 0],
       noXAxisTick,
       noYAxisTick,
     } = options
@@ -60,13 +60,13 @@ const StackedBarChart = (container: HTMLElement, data: SeriesDataItem[], options
     if (showXAxisGrid) {
       const xGrid = bounds
         .append('g')
-        .call(d3.axisBottom(xScale).tickSize(dimensions.visorHeight + 2))
+        .call(d3.axisBottom(xScale).tickSize(dimensions.rendererHeight + 2))
         .call((g) => g.select('.domain').remove())
         .call((g) => g.selectAll('.tick text').remove())
         .call((g) => g.selectAll('.tick line').attr('stroke', xAxisGridColor))
     }
     const xAxisGenerator = d3.axisBottom(xScale)
-    const xAxis = bounds.append('g').call(xAxisGenerator).style('transform', `translateY(${dimensions.visorHeight}px)`)
+    const xAxis = bounds.append('g').call(xAxisGenerator).style('transform', `translateY(${dimensions.rendererHeight}px)`)
 
     if (noXAxisTick) xAxis.call((g) => g.selectAll('.tick line').remove())
     if (noXAxisLine)
@@ -76,7 +76,7 @@ const StackedBarChart = (container: HTMLElement, data: SeriesDataItem[], options
     if (options.xLabel) {
       const xAxisLabel = xAxis
         .append('text')
-        .attr('x', dimensions.visorWidth / 2)
+        .attr('x', dimensions.rendererWidth / 2)
         .attr('y', (dimensions.marginBottom / 3) * 2)
         .attr('fill', 'black')
         .style('font-size', options?.fontSize || '1.4em')
@@ -87,7 +87,7 @@ const StackedBarChart = (container: HTMLElement, data: SeriesDataItem[], options
     if (showYAxisGrid) {
       const yGrid = bounds
         .append('g')
-        .call(d3.axisRight(yScale).tickSize(dimensions.visorWidth))
+        .call(d3.axisRight(yScale).tickSize(dimensions.rendererWidth))
         .call((g) => g.select('.domain').remove())
         .call((g) => g.selectAll('.tick text').remove())
         .call((g) =>
@@ -101,7 +101,7 @@ const StackedBarChart = (container: HTMLElement, data: SeriesDataItem[], options
     if (options.yLabel) {
       const yAxisLabel = yAxis
         .append('text')
-        .attr('x', -dimensions.visorHeight / 2)
+        .attr('x', -dimensions.rendererHeight / 2)
         .attr('y', (-dimensions.marginLeft / 3) * 2)
         .attr('fill', 'black')
         .style('font-size', options?.fontSize || '1.4em')
@@ -159,6 +159,6 @@ const StackedBarChart = (container: HTMLElement, data: SeriesDataItem[], options
     rect.exit().remove()
   }
 
-  createVisor(container, renderer, options)
+  createRenderer(container, renderer, options)
 }
 export default StackedBarChart

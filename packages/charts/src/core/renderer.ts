@@ -45,7 +45,7 @@ const debounce = (fn: Function, delay: number = 500): Function => {
   }
 }
 
-export class Visor {
+export class Renderer {
   wrapper!: Selection<HTMLElement, unknown, null, undefined>
   bound!: Selection<SVGGElement, unknown, null, undefined>
   dimensions!: Required<Dimensions>
@@ -64,7 +64,7 @@ export class Visor {
           height: targetElement.clientHeight,
           ...options,
         })
-        const { width, height, marginLeft, marginTop, visorHeight, visorWidth } = this.dimensions
+        const { width, height, marginLeft, marginTop, rendererHeight, rendererWidth } = this.dimensions
         // Select the container element
         this.wrapper = select(targetElement)
         this.clear()
@@ -72,15 +72,15 @@ export class Visor {
         // Adding an SVG element
         const svg = this.wrapper.append('svg')
 
-        // Creating our bounding box - Visor
+        // Creating our bounding box - Renderer
         this.bound = svg.append('g')
 
-        svg.attr('viewbox', `0 0 ${visorWidth} ${visorHeight}`)
+        svg.attr('viewbox', `0 0 ${rendererWidth} ${rendererHeight}`)
 
         this.bound
           .style('transform', `translate(${marginLeft}px, ${marginTop}px)`)
-          .attr('width', visorWidth)
-          .attr('height', visorHeight)
+          .attr('width', rendererWidth)
+          .attr('height', rendererHeight)
       } else throw new Error('Ensure the provided element exist!')
     })
 
@@ -110,9 +110,9 @@ export class Visor {
   }
 }
 
-const createVisor = (
+const createRenderer = (
   container: HTMLElement | string,
-  renderer?: (visor: Selection<SVGGElement, unknown, null, undefined>, dimensions: Required<Dimensions>) => void,
+  fn?: (renderer: Selection<SVGGElement, unknown, null, undefined>, dimensions: Required<Dimensions>) => void,
   opts?: VisOptions,
 ) => {
   const render = debounce(() => {
@@ -134,18 +134,18 @@ const createVisor = (
 
       const svg = wrapper
         .append('svg')
-        .attr('viewbox', `0 0 ${dimensions.visorWidth} ${dimensions.visorHeight}`)
+        .attr('viewbox', `0 0 ${dimensions.rendererWidth} ${dimensions.rendererHeight}`)
         .style('min-width', '100%')
         .style('min-height', '100%')
 
-      // Creating our bounding box - Visor
-      const visor = svg
+      // Creating our bounding box - Renderer
+      const renderer = svg
         .append('g')
         .style('transform', `translate(${dimensions.marginLeft}px, ${dimensions.marginTop}px)`)
-        .attr('width', dimensions.visorWidth)
-        .attr('height', dimensions.visorHeight)
+        .attr('width', dimensions.rendererWidth)
+        .attr('height', dimensions.rendererHeight)
 
-      renderer?.(visor, dimensions)
+        fn?.(renderer, dimensions)
     }
   })
 
@@ -155,7 +155,7 @@ const createVisor = (
   })
 }
 
-export const buildVisor = (container: HTMLElement | string, options?: Dimensions) => {
+export const useRenderer = (container: HTMLElement | string, options?: Dimensions) => {
   let root
 
   if (typeof container == 'string') {
@@ -169,10 +169,10 @@ export const buildVisor = (container: HTMLElement | string, options?: Dimensions
       ...options,
     })
 
-    const { width, height, visorHeight, marginLeft, marginTop, visorWidth } = dimensions
+    const { width, height, rendererHeight, marginLeft, marginTop, rendererWidth } = dimensions
     const wrapper = select(root)
 
-    clearVisor(wrapper)
+    clearRenderer(wrapper)
 
     const svg = wrapper
       .append('svg')
@@ -180,19 +180,19 @@ export const buildVisor = (container: HTMLElement | string, options?: Dimensions
       .style('min-width', '100%')
       .style('min-height', '100%')
 
-    const visor = svg
+    const renderer = svg
       .append('g')
       .style('transform', `translate(${marginLeft}px, ${marginTop}px)`)
-      .attr('width', visorWidth)
-      .attr('height', visorHeight)
+      .attr('width', rendererWidth)
+      .attr('height', rendererHeight)
 
-    return { wrapper, svg, visor, dimensions }
+    return { wrapper, svg, renderer, dimensions }
   }
   return {}
 }
 
-function clearVisor(wrapper: Selection<HTMLElement, unknown, null, undefined> | undefined) {
+function clearRenderer(wrapper: Selection<HTMLElement, unknown, null, undefined> | undefined) {
   if (wrapper) wrapper.selectAll('*').remove()
 }
 
-export default createVisor
+export default createRenderer

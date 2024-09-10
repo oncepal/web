@@ -12,7 +12,7 @@ export type LineData = [number, number]
 export type LineOptions = Partial<typeof defaultOptions>
 
 export function renderLines(
-  visor: Selection<SVGGElement, unknown, null, undefined>,
+  renderer: Selection<SVGGElement, unknown, null, undefined>,
   data: LineData[],
   xScale: ScaleLinear<number, number, never>,
   yScale: ScaleLinear<number, number, never>,
@@ -24,7 +24,7 @@ export function renderLines(
     .y((d) => yScale(yAccessor(d)))
     .curve(curve)
 
-  const path = visor
+  const path = renderer
     .append('path')
     .attr('d', lineGenerator(data))
     .attr('fill', 'none')

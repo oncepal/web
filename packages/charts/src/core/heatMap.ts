@@ -17,7 +17,7 @@ export type HeatMapData = [string, string, number]
 export type HeatMapOptions = Partial<typeof defaultOptions>
 
 export function renderHeatMap(
-  visor: Selection<SVGGElement, unknown, null, undefined>,
+  renderer: Selection<SVGGElement, unknown, null, undefined>,
   data: HeatMapData[],
   xScale: ScaleBand<string>,
   yScale: ScaleBand<string>,
@@ -28,7 +28,7 @@ export function renderHeatMap(
   
   const colorScale = scaleLinear(extent(data.map(zAccessor)) as [number, number], color)
 
-  visor
+  renderer
     .selectAll('rect')
     .data(data)
     .join('rect')

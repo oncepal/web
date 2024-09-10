@@ -5,8 +5,8 @@ export type Dimensions = Partial<{
   marginRight: number
   marginBottom: number
   marginLeft: number
-  visorHeight: number
-  visorWidth: number
+  rendererHeight: number
+  rendererWidth: number
 }>
 
 export const combineDimensions = (dimensions: Dimensions & { height: number; width: number }): Required<Dimensions> => {
@@ -24,7 +24,7 @@ export const combineDimensions = (dimensions: Dimensions & { height: number; wid
 
   return {
     ...mergedDimensions,
-    visorHeight: mergedDimensions.height - mergedDimensions.marginTop - mergedDimensions.marginBottom,
-    visorWidth: mergedDimensions.width - mergedDimensions.marginLeft - mergedDimensions.marginRight,
+    rendererHeight: mergedDimensions.height - mergedDimensions.marginTop - mergedDimensions.marginBottom,
+    rendererWidth: mergedDimensions.width - mergedDimensions.marginLeft - mergedDimensions.marginRight,
   }
 }

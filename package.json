@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "init": "turbo run build --filter=@oncepal/utils --filter=@oncepal/charts --filter=@oncepal/ui",
+    "dev:libs": "turbo run dev --filter=@oncepal/ui  --filter=@oncepal/charts  --filter=@oncepal/utils --filter=@oncepal/test",
     "dev:ui": "turbo run dev --filter=@oncepal/ui",
     "dev:native": "turbo run dev --filter=@oncepal/native",
     "dev:h5": "turbo run dev --filter=@oncepal/h5",

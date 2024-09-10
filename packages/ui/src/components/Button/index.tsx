@@ -70,7 +70,7 @@ const Button = ({
     height: icon ? tokens.spacings.xl : '',
     padding: text || icon ? padding || '' : padding || theme.button.padding,
     border: outlined ? `1px solid ${useThemedProps(theme, color) || theme.colors.primary}` : 'none',
-    borderRadius: useThemedProps(theme, radius) || (rounded ? tokens.radius.rounded : tokens.radius.md),
+    borderRadius: useThemedProps(theme, radius) || (rounded ? tokens.radius.rounded : tokens.radius.xs),
     color:
       text || icon || outlined
         ? useThemedProps(theme, color) || theme.colors.primary

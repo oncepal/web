@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import vars from '../theme/vars'
+import vars from '../theme/tokens'
 
 export const defaultOptions = {
   opacity: 0.2,
@@ -18,7 +18,7 @@ export type ArcData = [string, number]
 export type ArcOptions = Partial<typeof defaultOptions>
 
 export function renderArcs(
-  visor: d3.Selection<SVGGElement, unknown, null, undefined>,
+  renderer: d3.Selection<SVGGElement, unknown, null, undefined>,
   data: ArcData[],
   opts?: ArcOptions,
 ) {
@@ -61,9 +61,9 @@ export function renderArcs(
     .domain(arcs.map((d) => d.data[0]))
     .range(colors)
 
-  visor.style('transform', `translate(50%,50%)`)
+  renderer.style('transform', `translate(50%,50%)`)
 
-  visor
+  renderer
     .selectAll('path')
     .data(arcs)
     .join('path')

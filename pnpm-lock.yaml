@@ -183,6 +183,52 @@ importers:
         specifier: ~5.3.3
         version: 5.3.3
 
+  apps/test:
+    dependencies:
+      '@emotion/react':
+        specifier: '>=11.5.0'
+        version: 11.13.0(@types/react@18.2.79)(react@18.2.0)
+      '@oncepal/charts':
+        specifier: workspace:*
+        version: link:../../packages/charts
+      '@oncepal/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@types/d3':
+        specifier: ^7.4.3
+        version: 7.4.3
+      d3:
+        specifier: ^7.9.0
+        version: 7.9.0
+      framer-motion:
+        specifier: ^11.2.11
+        version: 11.3.28(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next:
+        specifier: ^14.1.1
+        version: 14.2.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@oncepal/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^20.11.24
+        version: 20.14.15
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.79
+      '@types/react-dom':
+        specifier: ^18.2.19
+        version: 18.3.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+
   packages/charts:
     devDependencies:
       '@oncepal/typescript-config':

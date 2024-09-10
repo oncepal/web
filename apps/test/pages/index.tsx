@@ -1,5 +1,6 @@
-import {Button, OPUIProvider} from '@oncepal/ui'
+
 import Charts from './components/Charts';
+import UIs from './components/UIs';
 
 export default function Page() {
 
@@ -7,10 +8,10 @@ export default function Page() {
 
 
   return (
-    <OPUIProvider>
-      <Button>hello world</Button>
-      <Button>hello world</Button>
+    <>
+
+      {/* <UIs/> */}
      <Charts/>
-    </OPUIProvider>
+    </>
   );
 }

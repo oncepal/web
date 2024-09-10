@@ -1,6 +1,6 @@
 // import * as d3 from 'd3'
 // import { Dimensions } from '../core/dimensions'
-// import createVisor, { VisOptions } from '../core/visor'
+// import createRenderer, { VisOptions } from '../core/renderer'
 
 // type StackedAreaChartParams = { dataset: number[][]; time: Date[]; series: string[] }
 // type StackedAreaChartOpts = VisOptions & {
@@ -36,7 +36,7 @@
 //     const xScale = d3
 //       .scaleTime()
 //       .domain(d3.extent(time, xAccessor) as Date[])
-//       .range([0, dimensions.visorWidth])
+//       .range([0, dimensions.rendererWidth])
 //       .nice()
 
 //     const flattenValues: number[] = []
@@ -51,7 +51,7 @@
 //     const yScale = d3
 //       .scaleLinear()
 //       .domain(d3.extent(flattenValues) as [number, number])
-//       .range([dimensions.visorHeight, 0])
+//       .range([dimensions.rendererHeight, 0])
 //       .nice()
 
 //     // Draw data
@@ -80,14 +80,14 @@
 //     const xAxis = bounds
 //       .append('g')
 //       .call(xAxisGenerator)
-//       .style('transform', `translateY(${dimensions.visorHeight}px)`)
+//       .style('transform', `translateY(${dimensions.rendererHeight}px)`)
 
 //     if (noXAxisLine) xAxis.call((g) => g.select('.domain').remove())
 //     if (showXAxisGrid) {
 //       const xGrid = bounds
 //         .append('g')
-//         .call(d3.axisBottom(xScale).tickSize(dimensions.visorHeight))
-//         // .style('transform', `translateY(${dimensions.visorHeight}px)`)
+//         .call(d3.axisBottom(xScale).tickSize(dimensions.rendererHeight))
+//         // .style('transform', `translateY(${dimensions.rendererHeight}px)`)
 //         .call((g) => g.select('.domain').remove())
 //         .call((g) => g.selectAll('.tick text').remove())
 //         .call((g) => g.selectAll('.tick:not(:first-of-type) line').attr('stroke', xAxisGridColor))
@@ -95,7 +95,7 @@
 //     if (opts.xLabel) {
 //       const xAxisLabel = xAxis
 //         .append('text')
-//         .attr('x', dimensions.visorWidth / 2)
+//         .attr('x', dimensions.rendererWidth / 2)
 //         .attr('y', (dimensions.marginBottom / 3) * 2)
 //         .attr('fill', 'black')
 //         .style('font-size', opts?.fontSize || '1.4em')
@@ -109,7 +109,7 @@
 //     if (showYAxisGrid) {
 //       const yGrid = bounds
 //         .append('g')
-//         .call(d3.axisRight(yScale).tickSize(dimensions.visorWidth))
+//         .call(d3.axisRight(yScale).tickSize(dimensions.rendererWidth))
 //         .call((g) => g.select('.domain').remove())
 //         .call((g) => g.selectAll('.tick text').remove())
 //         .call((g) => g.selectAll('.tick:not(:first-of-type) line').attr('stroke', yAxisGridColor))
@@ -117,7 +117,7 @@
 //     if (opts.yLabel) {
 //       const yAxisLabel = yAxis
 //         .append('text')
-//         .attr('x', -dimensions.visorHeight / 2)
+//         .attr('x', -dimensions.rendererHeight / 2)
 //         .attr('y', (-dimensions.marginLeft / 3) * 2)
 //         .attr('fill', 'black')
 //         .style('font-size', opts?.fontSize || '1.4em')
@@ -129,6 +129,6 @@
 //     drawStack(params.dataset, color)
 //   }
 
-//   createVisor(container, renderer, { type: 'StackedAreaChart', ...opts })
+//   createRenderer(container, renderer, { type: 'StackedAreaChart', ...opts })
 // }
 // export default StackedAreaChart

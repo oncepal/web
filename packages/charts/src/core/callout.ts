@@ -34,9 +34,9 @@ class Callout {
   }
 }
 export function renderCallout(
-  visor: d3.Selection<SVGGElement, unknown, null, undefined>,
+  renderer: d3.Selection<SVGGElement, unknown, null, undefined>,
   dimensions: Dimensions,
   opts?: CalloutOptions,
 ) {
-  const { visorHeight, visorWidth, marginBottom, marginLeft } = dimensions
+  const { rendererHeight, rendererWidth, marginBottom, marginLeft } = dimensions
 }

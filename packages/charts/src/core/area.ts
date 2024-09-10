@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import vars from '../theme/vars'
+import vars from '../theme/tokens'
 
 export const defaultOptions = {
   y1Accessor: (d: AreaData) => d[2],
@@ -17,7 +17,7 @@ export type AreaData = [number, number, number]
 export type AreaOptions = Partial<typeof defaultOptions>
 
 export function renderAreas(
-  visor: d3.Selection<SVGGElement, unknown, null, undefined>,
+  renderer: d3.Selection<SVGGElement, unknown, null, undefined>,
   data: AreaData[],
   xScale: d3.ScaleLinear<number, number, never>,
   yScale: d3.ScaleLinear<number, number, never>,
@@ -32,7 +32,7 @@ export function renderAreas(
     .x((d) => xScale(xAccessor(d)))
     .y0((d) => yScale(y0Accessor(d)))
     .y1((d) => yScale(y1Accessor(d)))
-  const path = visor
+  const path = renderer
     .append('path')
     .attr('d', areaGenerator(data))
     .attr('fill', fillColor)

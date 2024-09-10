@@ -1,5 +1,5 @@
 import { Selection, ScaleLinear } from 'd3'
-import vars from '../theme/vars'
+import vars from '../theme/tokens'
 
 export const defaultOptions = {
   color: '#5356FB',
@@ -13,7 +13,7 @@ export type CircleData = [number, number]
 export type CircleOptions = Partial<typeof defaultOptions>
 
 export function renderCircles(
-  visor: Selection<SVGGElement, unknown, null, undefined>,
+  renderer: Selection<SVGGElement, unknown, null, undefined>,
   data: CircleData[],
   xScale: ScaleLinear<number, number, never>,
   yScale: ScaleLinear<number, number, never>,
@@ -24,7 +24,7 @@ export function renderCircles(
     ...opts,
   }
 
-  const positionedDots = visor
+  const positionedDots = renderer
     .selectAll('circle')
     .data(data)
     .join('circle')

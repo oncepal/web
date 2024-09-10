@@ -1,3 +1,3 @@
-import createVisor, { VisOptions } from './visor'
+import createRenderer, { VisOptions } from './renderer'
 import { Dimensions } from './dimensions'
-export default createVisor
+export default createRenderer
