@@ -1,14 +1,10 @@
-import {Button, OPUIProvider} from '@oncepal/ui'
-import { vis } from '@oncepal/charts'
+import React from "react";
 export default function Page() {
 
     
 
 
   return (
-    <OPUIProvider>
-      <Button>hello world</Button>
-      <div id="root6"></div>
-    </OPUIProvider>
+      <div id="root6">admin</div>
   );
 }
