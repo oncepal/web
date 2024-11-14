@@ -5,7 +5,7 @@ import dashboard from './modules/dashboard';
 
 
 import result from './modules/result';
-import user from './modules/user';
+import user from './modules/usermanager';
 import login from './modules/login';
 import otherRoutes from './modules/others';
 
@@ -46,10 +46,12 @@ const routes: IRouter[] = [
   },
   {
     path: '/',
-    redirect: '/dashboard/base',
+    redirect: '/usermanager/userlist',
   },
 ];
 
-const allRoutes = [...routes, ...dashboard, ...result, ...user, ...login, ...otherRoutes];
+// const allRoutes = [...routes, ...dashboard, ...result, ...user, ...login, ...otherRoutes];
+const allRoutes = [...routes, ...user,...result, ...login, ...otherRoutes];
+
 
 export default allRoutes;
