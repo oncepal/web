@@ -1,11 +1,8 @@
 import React, { lazy } from 'react';
-import { BrowserRouterProps } from 'react-router-dom';
+import { BrowserRouterProps, Navigate } from 'react-router-dom';
 import dashboard from './modules/dashboard';
-
-
-
 import result from './modules/result';
-import user from './modules/usermanager';
+import userManager from './modules/usermanager';
 import login from './modules/login';
 import otherRoutes from './modules/others';
 
@@ -50,8 +47,20 @@ const routes: IRouter[] = [
   },
 ];
 
-// const allRoutes = [...routes, ...dashboard, ...result, ...user, ...login, ...otherRoutes];
-const allRoutes = [...routes, ...user,...result, ...login, ...otherRoutes];
+const allRoutes = [...routes, ...userManager, ...result, ...otherRoutes];
 
+// 身份验证函数
+const isAuthenticated = () => {
+  // 这里可以添加实际的身份验证逻辑
+  // 例如检查本地存储或会话中的用户信息
+  return !!localStorage.getItem('userToken');
+};
 
-export default allRoutes;
+const PrivateRoute = (route: IRouter) => {
+  if ( route.path !== '/login' && !isAuthenticated()) {
+    return { redirect: '/login',...route}
+  }
+  return{...route}
+};
+
+export default allRoutes.map((route) => ( PrivateRoute(route)));
