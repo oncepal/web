@@ -1,30 +1,97 @@
-## Getting Started
+<p style="display:flex; justify-content: center">
 
-First, run the development server:
+</p>
+<p align="center">
+  <a href="https://tdesign.tencent.com/starter/react/#/dashboard/base" target="_blank">
+    <img alt="TDesign Logo" width="200" src="https://tdesign.gtimg.com/starter/brand-logo.svg">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/vite.svg" alt="node compatibility"></a>
+  <a href="https://github.com/Tencent/tdesign-react/blob/develop/LICENSE">
+    <img src="https://img.shields.io/npm/l/tdesign-react.svg?sanitize=true" alt="License">
+  </a>
+</p>
+
+English | [简体中文](./README-zh_CN.md) 
+### Introduction
+
+TDesign React Starter is a TDesign-based project developed with `React`, `Vite`. It can be customized theme configuration, and aims to provide project out-of-the-box, configuration-style middle and background projects.
+
+<p>
+  <a href="http://tdesign.tencent.com/starter/react/">Live Preview</a>
+  ·
+  <a href="https://tdesign.tencent.com/starter/docs/react/get-started">Documentation</a>
+</p>
+
+<img src="docs/docs-starter.png">
+
+### Features
+
+- Various provided pages for develop
+- Complete directory structure for develop
+- Code specification configuration
+- Support dark mode
+- Custom theme colors
+- Various space layouts
+- Mock data scheme
+
+### Usage
+
+> Initialize project with our CLI tool `tdesign-starter-cli` 
 
 ```bash
-pnpm dev
+## install tdesign-starter-cli
+npm i tdesign-starter-cli@latest -g
+
+## create project
+td-starter init
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Develop
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+## install dependencies
+npm install
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## set up
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Build
 
-## Learn More
+```bash
+## build
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
+## build for test
+npm run build:test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Contributing Guide
 
-## Deploy on Vercel
+We welcome contributions to our project. Create your [Issue](https://github.com/tencent/tdesign-react-starter/issues/new/choose) or Submit your [Pull Request](https://github.com/Tencent/tdesign-react-starter/pulls).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
+#### Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Fork it!
+2. Create your branch: `git checkout -b feat/xxxx`
+3. Commit: `git commit -a 'feat(project): describe'`
+4. Push: `git push origin feat/xxxx`
+5. New Pull Request `pull request`
+
+#### Commit Specification
+
+- [Angular Convention](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular)
+
+### Compatibility
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br> IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Edge >=84                                                                                                                                                                                                        | Firefox >=83                                                                                                                                                                                                      | Chrome >=84                                                                                                                                                                                                   | Safari >=14.1                                                                                                                                                                                                 |
+
+### License
+
+The MIT License. Please see [the license file](LICENSE) for more information.
