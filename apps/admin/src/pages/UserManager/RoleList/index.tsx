@@ -77,8 +77,8 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
         height={`calc(100vh - ${tableOffsetTop}px)`}
       />
       <Pagination
-        total={50}
-      style={{marginTop:8}}
+        total={data.length}
+        style={{marginTop:8}}
         defaultPageSize={10}
         pageSizeOptions={[{ label: '10条/页', value: 10 }, { label: '20条/页', value: 20 }, { label: '30条/页', value: 30 }, { label: '40条/页', value: 40 }, { label: '50条/页', value: 50 }]}
       />
