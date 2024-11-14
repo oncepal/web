@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useRef ,useEffect, useState, HtmlHTMLAttributes} from 'react';
 import { Row, Col, Button, Table, Pagination, List } from 'tdesign-react';
 import { IconFont } from 'tdesign-icons-react';
 import { BrowserRouterProps } from 'react-router-dom';
@@ -38,7 +38,6 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
     { id: 19, name: '实习生', description: '拥有实习生权限' },
     { id: 20, name: '外部顾问', description: '拥有外部顾问权限' },
   ];
-
   // 表格列定义
   const columns = [
     { colKey: 'id', title: 'ID' },
@@ -56,8 +55,17 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
     },
   ];
 
-  const containerRef = useRef(null);
+  const containerRef = useRef<any>(null);
+  const [tableOffsetTop ,setTableOffectTop] = useState(0)
+  
   const size = useSize(containerRef);
+
+  useEffect(()=>{
+    if(containerRef.current )
+    setTableOffectTop(containerRef?.current?.offsetTop + 104)
+
+
+  },[size])
 
   return (
     <div className={styles.container} ref={containerRef}>
@@ -66,10 +74,11 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
         data={data}
         columns={columns}
         rowKey="id"
-        height="calc(100% - 1000)"
+        height={`calc(100vh - ${tableOffsetTop}px)`}
       />
       <Pagination
         total={50}
+      style={{marginTop:8}}
         defaultPageSize={10}
         pageSizeOptions={[{ label: '10条/页', value: 10 }, { label: '20条/页', value: 20 }, { label: '30条/页', value: 30 }, { label: '40条/页', value: 40 }, { label: '50条/页', value: 50 }]}
       />

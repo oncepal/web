@@ -54,7 +54,7 @@ const initialState: IGlobalState = {
   color: defaultColor?.[0],
   showHeader: true,
   showBreadcrumbs: true,
-  showFooter: true,
+  showFooter: false,
   chartColors: CHART_COLORS[defaultTheme],
 };
 
