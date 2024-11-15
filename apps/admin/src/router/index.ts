@@ -57,10 +57,14 @@ const isAuthenticated = () => {
 };
 
 const PrivateRoute = (route: IRouter) => {
-  if ( route.path !== '/login' && !isAuthenticated()) {
-    return { redirect: '/login',...route}
-  }
-  return{...route}
+  const isLogin = isAuthenticated()
+  const isLoginPath = route.path === '/login'
+  // 已登录 跳转首页
+  const redirectToHome = isLoginPath && isLogin && {redirect:"/"}
+  // 未登录 跳转登录页
+  const redirectToLogin = !isLoginPath && !isLogin && {redirect:"/login"} 
+  const redirect = redirectToHome || redirectToLogin || {}
+  return{...route ,... redirect}
 };
 
 export default allRoutes.map((route) => ( PrivateRoute(route)));
