@@ -1,7 +1,17 @@
 import { defineConfig } from '@umijs/max';
-
+import { join } from 'path';
 export default defineConfig({
-  antd: {},
+  antd: {
+    compact: true,
+    style: 'less',
+    theme: {},
+    appConfig: {},
+    momentPicker: true,
+    styleProvider: {
+      hashPriority: 'high',
+      legacyTransformer: true,
+    },
+  },
   access: {},
   model: {},
   initialState: {},
@@ -31,5 +41,14 @@ export default defineConfig({
     },
   ],
   npmClient: 'pnpm',
+ 
+  plugins: ['@umijs/max-plugin-openapi'],
+  openAPI: [
+    {
+      requestLibPath: "import { request } from '@umijs/max'",
+      schemaPath: 'http://localhost:3000/api-json',
+      mock: false,
+      projectName: "oncepal"
+    },
+  ],
 });
-

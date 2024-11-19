@@ -2,14 +2,14 @@
   "name": "@oncepal/admin",
   "version": "1.0.0",
   "private": true,
-  "author": "'苑宏博' <'9419827+yuan-hongbo@user.noreply.gitee.com'>",
   "scripts": {
     "dev": "max dev",
     "build": "max build",
     "format": "prettier --cache --write .",
     "postinstall": "max setup",
     "setup": "max setup",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "openapi": "max openapi"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
+    "@umijs/max-plugin-openapi": "^2.0.3",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.7",
     "prettier-plugin-organize-imports": "^3.2.2",
