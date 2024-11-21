@@ -11,6 +11,18 @@ export const instance = axios.create({
   timeout: TIMEOUT,
   withCredentials: true,
 });
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 instance.interceptors.response.use(
   // eslint-disable-next-line consistent-return
@@ -24,7 +36,25 @@ instance.interceptors.response.use(
     }
     return Promise.reject(response?.data);
   },
-  (e) => Promise.reject(e),
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const refreshToken = localStorage.getItem('refresh_token');
+      if (refreshToken) {
+        try {
+          const response = await axios.post(`${API_HOST}/auth/refresh`, { refreshToken });
+          const { accessToken } = response.data;
+          localStorage.setItem('access_token', accessToken);
+          originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+          return instance(originalRequest);
+        } catch (refreshError) {
+          return Promise.reject(refreshError);
+        }
+      }
+    }
+    return Promise.reject(error);
+  }
 );
 
 export default instance;

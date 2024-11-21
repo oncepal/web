@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { authControllerLogInWithRegister } from 'services/oncepal/api/auth';
 const namespace = 'user';
-const TOKEN_NAME = 'accessToken';
-const REFRESH_TOKEN_NAME = 'refreshToken';
+const TOKEN_NAME = 'access_token';
+const REFRESH_TOKEN_NAME = 'refresh_token';
 
 const initialState = {
   token: localStorage.getItem(TOKEN_NAME) || 'main_token', // 默认token不走权限
