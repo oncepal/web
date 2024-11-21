@@ -26,11 +26,12 @@ export default function Login() {
     if (e.validateResult === true) {
       try {
         const formValue = formRef.current?.getFieldsValue?.(true) || {};
-        await dispatch(login(formValue));
-
+       const res:any =  await dispatch(login(formValue));
+       if(res.error){
+        throw(res.error.message)
+       }
         MessagePlugin.success('登录成功');
-
-        navigate('/dashboard/base');
+        navigate('/');
       } catch (e) {
         console.log(e);
         MessagePlugin.error('登录失败');

@@ -4,9 +4,8 @@ import proxy from '../configs/host';
 const env = import.meta.env.MODE || 'development';
 const API_HOST = proxy[env].API;
 
-const SUCCESS_CODE = 0;
+const SUCCESS_CODE = 200;
 const TIMEOUT = 5000;
-
 export const instance = axios.create({
   baseURL: API_HOST,
   timeout: TIMEOUT,

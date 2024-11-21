@@ -1,69 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-
+import { authControllerLogInWithRegister } from 'services/oncepal/api/auth';
 const namespace = 'user';
-const TOKEN_NAME = 'tdesign-starter';
+const TOKEN_NAME = 'accessToken';
+const REFRESH_TOKEN_NAME = 'refreshToken';
 
 const initialState = {
   token: localStorage.getItem(TOKEN_NAME) || 'main_token', // 默认token不走权限
+  refreshToken:"",
   userInfo: {},
 };
 
 // login
 export const login = createAsyncThunk(`${namespace}/login`, async (userInfo: Record<string, unknown>) => {
-  const mockLogin = async (userInfo: Record<string, unknown>) => {
-    // 登录请求流程
-    console.log(userInfo);
-    // const { account, password } = userInfo;
-    // if (account !== 'td') {
-    //   return {
-    //     code: 401,
-    //     message: '账号不存在',
-    //   };
-    // }
-    // if (['main_', 'dev_'].indexOf(password) === -1) {
-    //   return {
-    //     code: 401,
-    //     message: '密码错误',
-    //   };
-    // }
-    // const token = {
-    //   main_: 'main_token',
-    //   dev_: 'dev_token',
-    // }[password];
-    return {
-      code: 200,
-      message: '登陆成功',
-      data: 'main_token',
-    };
-  };
+  const res:any = await authControllerLogInWithRegister({"phoneNumber":"12345678901"});
+  console.log(res)
 
-  const res = await mockLogin(userInfo);
   if (res.code === 200) {
-    return res.data;
+    return {
+      accessToken: res.data.accessToken,
+      refreshToken: res.data.refreshToken,
+      userInfo: res.data.userInfo,
+    };
   }
   throw res;
-});
-
-// getUserInfo
-export const getUserInfo = createAsyncThunk(`${namespace}/getUserInfo`, async (_, { getState }: any) => {
-  const { token } = getState();
-  const mockRemoteUserInfo = async (token: string) => {
-    if (token === 'main_token') {
-      return {
-        name: 'td_main',
-        roles: ['all'],
-      };
-    }
-    return {
-      name: 'td_dev',
-      roles: ['userIndex', 'dashboardBase', 'login'],
-    };
-  };
-
-  const res = await mockRemoteUserInfo(token);
-
-  return res;
 });
 
 const userSlice = createSlice({
@@ -82,12 +42,11 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        localStorage.setItem(TOKEN_NAME, action.payload);
-
-        state.token = action.payload;
-      })
-      .addCase(getUserInfo.fulfilled, (state, action) => {
-        state.userInfo = action.payload;
+        localStorage.setItem(TOKEN_NAME, action.payload.accessToken);
+        localStorage.setItem(REFRESH_TOKEN_NAME, action.payload.refreshToken);
+        state.token = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.userInfo = action.payload.userInfo;
       });
   },
 });
