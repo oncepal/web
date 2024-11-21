@@ -48,22 +48,6 @@ const routes: IRouter[] = [
 
 const allRoutes = [...routes, ...userManager, ...result, ...otherRoutes];
 
-// 身份验证函数
-const isAuthenticated = () => {
-  // 这里可以添加实际的身份验证逻辑
-  // 例如检查本地存储或会话中的用户信息
-  return !!localStorage.getItem('userToken');
-};
 
-const PrivateRoute = (route: IRouter) => {
-  const isLogin = isAuthenticated()
-  const isLoginPath = route.path === '/login'
-  // 已登录 跳转首页
-  const redirectToHome = isLoginPath && isLogin && {redirect:"/"}
-  // 未登录 跳转登录页
-  const redirectToLogin = !isLoginPath && !isLogin && {redirect:"/login"} 
-  const redirect = redirectToHome || redirectToLogin || {}
-  return{...route ,... redirect}
-};
 
-export default allRoutes.map((route) => ( PrivateRoute(route)));
+export default allRoutes
