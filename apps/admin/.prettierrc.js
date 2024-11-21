@@ -1,26 +1,22 @@
 module.exports = {
+  printWidth: 120,
+  tabWidth: 2,
+  useTabs: false,
+  semi: true,
   singleQuote: true,
+  quoteProps: 'as-needed',
+  jsxSingleQuote: true,
   trailingComma: 'all',
-  printWidth: 100,
-  proseWrap: 'never',
+  bracketSpacing: true,
+  jsxBracketSameLine: false,
+  arrowParens: 'always',
+  rangeStart: 0,
+  rangeEnd: null,
+  requirePragma: false,
+  insertPragma: false,
+  proseWrap: 'preserve',
+  htmlWhitespaceSensitivity: 'css',
+  vueIndentScriptAndStyle: false,
   endOfLine: 'lf',
-  overrides: [
-    {
-      files: '.prettierrc',
-      options: {
-        parser: 'json',
-      },
-    },
-    {
-      files: 'document.ejs',
-      options: {
-        parser: 'html',
-      },
-    },
-  ],
-  plugins: [
-    'prettier-plugin-organize-imports',
-    'prettier-plugin-packagejson',
-    'prettier-plugin-two-style-order',
-  ],
+  embeddedLanguageFormatting: 'auto',
 };

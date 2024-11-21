@@ -1,4 +1,4 @@
-# http://editorconfig.org
+# indicate this is the root of the project
 root = true
 
 [*]
@@ -11,6 +11,3 @@ insert_final_newline = true
 
 [*.md]
 trim_trailing_whitespace = false
-
-[Makefile]
-indent_style = tab
