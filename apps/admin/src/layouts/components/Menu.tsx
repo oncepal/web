@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, MenuValue } from 'tdesign-react';
 import router, { IRouter } from 'router';
@@ -94,9 +94,21 @@ export const HeaderMenu = memo(() => {
 export default memo((props: IMenuProps) => {
   const location = useLocation();
   const globalState = useAppSelector(selectGlobal);
+  const [expanded, setExpanded] = useState<Array<MenuValue>>([]); // 修改 expanded 状态类型
 
   const { version } = globalState;
   const bottomText = globalState.collapsed ? version : `TDesign Starter ${version}`;
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const expandedPaths = router.reduce((acc: Array<MenuValue>, item: IRouter) => {
+      if (currentPath.startsWith(item.path)) {
+        acc.push(item.path);
+      }
+      return acc;
+    }, []);
+    setExpanded(expandedPaths);
+  }, [location.pathname]);
 
   return (
     <Menu
@@ -106,6 +118,8 @@ export default memo((props: IMenuProps) => {
       value={location.pathname}
       theme={globalState.theme}
       collapsed={globalState.collapsed}
+      expanded={expanded} // 新增 expanded 属性
+      onExpand={(expanded: Array<MenuValue>) => setExpanded(expanded)} // 修改为 onExpand 事件
       operations={props.showOperation ? <div className={Style.menuTip}>{bottomText}</div> : undefined}
       logo={props.showLogo ? <MenuLogo collapsed={globalState.collapsed} /> : undefined}
     >
