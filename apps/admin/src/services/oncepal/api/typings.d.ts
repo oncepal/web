@@ -24,10 +24,7 @@ declare namespace API {
 
   type CreatePostDto = {};
 
-  type CreateRoleDto = {
-    /** 角色名称 */
-    name: string;
-  };
+  type CreateRoleDto = {};
 
   type CreateUserDto = {};
 
@@ -54,8 +51,6 @@ declare namespace API {
     phoneNumber: string;
   };
 
-  type Object = {};
-
   type PostControllerDeletePostParams = {
     id: string;
   };
@@ -74,37 +69,24 @@ declare namespace API {
     phoneNumber: string;
   };
 
-  type RoleControllerDeleteRoleParams = {
+  type RolesControllerFindOneParams = {
+    /** 角色ID */
     id: string;
   };
 
-  type RoleControllerGetRoleByIdParams = {
+  type RolesControllerRemoveParams = {
+    /** 角色ID */
     id: string;
   };
 
-  type RoleControllerGetRolesParams = {
-    /** 跳过记录数 */
-    skip?: number;
-    /** 获取记录数 */
-    take?: number;
-    /** 游标 */
-    cursor?: string;
-    /** 查询条件 */
-    where?: Object;
-    /** 排序条件 */
-    orderBy?: Object;
-  };
-
-  type RoleControllerUpdateRoleParams = {
+  type RolesControllerUpdateParams = {
+    /** 角色ID */
     id: string;
   };
 
   type UpdateDemandDto = {};
 
-  type UpdateRoleDto = {
-    /** 角色名称 */
-    name?: string;
-  };
+  type UpdateRoleDto = {};
 
   type UpdateUserDto = {};
 

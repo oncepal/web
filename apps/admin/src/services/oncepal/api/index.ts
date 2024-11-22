@@ -6,7 +6,7 @@ import * as auth from './auth';
 import * as chatroom from './chatroom';
 import * as demand from './demand';
 import * as post from './post';
-import * as role from './role';
+import * as roles from './roles';
 import * as user from './user';
 export default {
   demand,
@@ -14,5 +14,5 @@ export default {
   auth,
   chatroom,
   post,
-  role,
+  roles,
 };
