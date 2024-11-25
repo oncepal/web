@@ -9,8 +9,9 @@ const TIMEOUT = 5000;
 export const instance = axios.create({
   baseURL: API_HOST,
   timeout: TIMEOUT,
-  withCredentials: true,
+  withCredentials: false,
 });
+
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('access_token');
@@ -25,7 +26,6 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  // eslint-disable-next-line consistent-return
   (response) => {
     if (response.status === 200) {
       const { data } = response;

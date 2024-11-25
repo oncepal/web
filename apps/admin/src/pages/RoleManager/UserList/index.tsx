@@ -1,8 +1,6 @@
 import React, { memo, useRef, useEffect, useState, HtmlHTMLAttributes } from 'react';
 import { Row, Col, Button, Table, Pagination, List, Message, MessagePlugin } from 'tdesign-react';
-import { IconFont } from 'tdesign-icons-react';
 import { BrowserRouterProps } from 'react-router-dom';
-import useDynamicChart from 'hooks/useDynamicChart';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
 import { userControllerUsers } from 'services/oncepal/api/user';
