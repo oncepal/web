@@ -3,6 +3,7 @@
 // API 更新时间：
 // API 唯一标识：
 import * as auth from './auth';
+import * as caidan from './caidan';
 import * as chatroom from './chatroom';
 import * as demand from './demand';
 import * as post from './post';
@@ -15,4 +16,5 @@ export default {
   chatroom,
   post,
   roles,
+  caidan,
 };

@@ -22,6 +22,8 @@ declare namespace API {
 
   type CreateDemandDto = {};
 
+  type CreateMenuDto = {};
+
   type CreatePostDto = {};
 
   type CreateRoleDto = {};
@@ -49,6 +51,18 @@ declare namespace API {
   type LogOutDto = {
     /** 手机号 */
     phoneNumber: string;
+  };
+
+  type MenusControllerDeleteParams = {
+    id: string;
+  };
+
+  type MenusControllerFindOneParams = {
+    id: string;
+  };
+
+  type MenusControllerUpdateParams = {
+    id: string;
   };
 
   type PostControllerDeletePostParams = {
@@ -85,6 +99,8 @@ declare namespace API {
   };
 
   type UpdateDemandDto = {};
+
+  type UpdateMenuDto = {};
 
   type UpdateRoleDto = {};
 
