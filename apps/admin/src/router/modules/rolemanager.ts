@@ -24,6 +24,13 @@ const result: IRouter[] = [
           title: '用户列表',
         },
       },
+      {
+        path: 'menulist',
+        Component: lazy(() => import('pages/RoleManager/MenuList')),
+        meta: {
+          title: '菜单列表',
+        },
+      },
     ],
   },
 ];
