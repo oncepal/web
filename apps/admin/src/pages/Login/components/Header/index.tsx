@@ -10,9 +10,6 @@ import Style from './index.module.less';
 export default function Header() {
   const dispatch = useAppDispatch();
 
-  const navToGitHub = () => {
-    window.open('https://github.com/tencent/tdesign-react-starter');
-  };
 
   const navToHelper = () => {
     window.open('http://tdesign.tencent.com/starter/docs/react/get-started');
@@ -25,17 +22,9 @@ export default function Header() {
   return (
     <div>
       <header className={Style.loginHeader}>
-        <LogoFullIcon className={Style.logo} />
+        <LogoFullIcon />
         <div className={Style.operationsContainer}>
-          <Button
-            className={Style.operationsButton}
-            theme='default'
-            shape='square'
-            variant='text'
-            onClick={navToGitHub}
-          >
-            <LogoGithubIcon className={Style.icon} />
-          </Button>
+        
           <Button
             className={Style.operationsButton}
             theme='default'

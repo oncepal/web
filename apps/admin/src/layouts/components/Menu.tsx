@@ -97,7 +97,7 @@ export default memo((props: IMenuProps) => {
   const [expanded, setExpanded] = useState<Array<MenuValue>>([]); // 修改 expanded 状态类型
 
   const { version } = globalState;
-  const bottomText = globalState.collapsed ? version : `TDesign Starter ${version}`;
+  const bottomText = globalState.collapsed ? version : `ONCEPAL ${version}`;
 
   useEffect(() => {
     const currentPath = location.pathname;

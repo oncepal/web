@@ -12,11 +12,10 @@ import Style from './index.module.less';
 
 const { FormItem } = Form;
 
-export type ELoginType = 'password' | 'phone' | 'qrcode';
+export type ELoginType = 'phone' | 'verifyCode' | 'qrcode';
 
 export default function Login() {
-  const [loginType, changeLoginType] = useState<ELoginType>('password');
-  const [showPsw, toggleShowPsw] = useState(false);
+  const [loginType, changeLoginType] = useState<ELoginType>('phone');
   const { countdown, setupCountdown } = useCountdown(60);
   const formRef = useRef<FormInstanceFunctions>();
   const navigate = useNavigate();
@@ -25,8 +24,9 @@ export default function Login() {
   const onSubmit = async (e: SubmitContext) => {
     if (e.validateResult === true) {
       try {
-        const formValue = formRef.current?.getFieldsValue?.(true) || {};
+        const formValue = (formRef.current?.getFieldsValue?.(true) || {}) as API.LogInDto;
        const res:any =  await dispatch(login(formValue));
+       console.log("res",res)
        if(res.error){
         throw(res.error.message)
        }
@@ -52,31 +52,11 @@ export default function Login() {
         labelWidth={0}
         onSubmit={onSubmit}
       >
-        {loginType === 'password' && (
+        {loginType === 'phone' && (
           <>
-            <FormItem name='account' rules={[{ required: true, message: '账号必填', type: 'error' }]}>
-              <Input size='large' placeholder='请输入账号：admin' prefixIcon={<UserIcon />}></Input>
+            <FormItem name='phoneNumber' rules={[{ required: true, message: '账号必填', type: 'error' }]}>
+              <Input clearable size='large' placeholder='请输入11位手机号' prefixIcon={<UserIcon />}></Input>
             </FormItem>
-            <FormItem name='password' rules={[{ required: true, message: '密码必填', type: 'error' }]}>
-              <Input
-                size='large'
-                type={showPsw ? 'text' : 'password'}
-                clearable
-                placeholder='请输入登录密码：admin'
-                prefixIcon={<LockOnIcon />}
-                suffixIcon={
-                  showPsw ? (
-                    <BrowseIcon onClick={() => toggleShowPsw((current) => !current)} />
-                  ) : (
-                    <BrowseOffIcon onClick={() => toggleShowPsw((current) => !current)} />
-                  )
-                }
-              />
-            </FormItem>
-            <div className={classnames(Style.checkContainer, Style.rememberPwd)}>
-              <Checkbox>记住账号</Checkbox>
-              <span className={Style.checkContainerTip}>忘记账号？</span>
-            </div>
           </>
         )}
 
@@ -92,10 +72,10 @@ export default function Login() {
             <QRCode value='' size={200} />
           </>
         )}
-        {/* // 手机号登陆 */}
-        {loginType === 'phone' && (
+        {/* 验证码登陆 */}
+        {loginType === 'verifyCode' && (
           <>
-            <FormItem name='phone' rules={[{ required: true, message: '手机号必填', type: 'error' }]}>
+            <FormItem name='phoneNumber' rules={[{ required: true, message: '手机号必填', type: 'error' }]}>
               <Input maxlength={11} size='large' placeholder='请输入您的手机号' prefixIcon={<UserIcon />} />
             </FormItem>
             <FormItem name='verifyCode' rules={[{ required: true, message: '验证码必填', type: 'error' }]}>
@@ -119,21 +99,21 @@ export default function Login() {
           </FormItem>
         )}
         <div className={Style.switchContainer}>
-          {loginType !== 'password' && (
-            <span className='tip' onClick={() => switchType('password')}>
-              使用账号密码登录
+          {loginType !== 'phone' && (
+            <span className='tip' onClick={() => switchType('phone')}>
+              使用手机号一键登录
             </span>
           )}
-          {loginType !== 'qrcode' && (
+          {/* {loginType !== 'qrcode' && (
             <span className='tip' onClick={() => switchType('qrcode')}>
               使用微信扫码登录
             </span>
-          )}
-          {loginType !== 'phone' && (
-            <span className='tip' onClick={() => switchType('phone')}>
-              使用手机号登录
+          )}*/}
+          {loginType !== 'verifyCode' && (
+            <span className='tip' onClick={() => switchType('verifyCode')}>
+              使用验证码登录
             </span>
-          )}
+          )} 
         </div>
       </Form>
     </div>

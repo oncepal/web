@@ -12,8 +12,8 @@ const initialState = {
 };
 
 // login
-export const login = createAsyncThunk(`${namespace}/login`, async (userInfo: Record<string, unknown>) => {
-  const res:any = await authControllerLogInWithRegister({"phoneNumber":"12345678901"});
+export const login = createAsyncThunk(`${namespace}/login`, async (userInfo: API.LogInDto) => {
+  const res:any = await authControllerLogInWithRegister(userInfo);
   console.log(res)
 
   if (res.code === 200) {
