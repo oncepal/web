@@ -3,7 +3,7 @@ import { Row, Col, Button, Table, Pagination, List, Message, MessagePlugin } fro
 import { BrowserRouterProps } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
-import { menusControllerFindAll } from 'services/oncepal/api/caidan';
+import { menusControllerFindAll } from 'services/api/caidan';
 
 const { ListItem, ListItemMeta } = List;
 

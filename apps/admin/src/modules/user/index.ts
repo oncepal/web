@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { authControllerLogInWithRegister } from 'services/oncepal/api/auth';
+import { authControllerLogInWithRegister } from 'services/api/auth';
 const namespace = 'user';
 const TOKEN_NAME = 'access_token';
 const REFRESH_TOKEN_NAME = 'refresh_token';
@@ -42,11 +42,15 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
+        console.log(state,action);
+        
         localStorage.setItem(TOKEN_NAME, action.payload.accessToken);
         localStorage.setItem(REFRESH_TOKEN_NAME, action.payload.refreshToken);
         state.token = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
         state.userInfo = action.payload.userInfo;
+        console.log(state.userInfo);
+        
       });
   },
 });

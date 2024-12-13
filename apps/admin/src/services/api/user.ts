@@ -2,7 +2,7 @@
 /* eslint-disable */
 import request from 'utils/request';
 
-/** 此处后端没有提供注释 POST /user */
+/** 创建用户 POST /user */
 export async function userControllerUser(body: API.CreateUserDto, options?: { [key: string]: any }) {
   return request<any>('/user', {
     method: 'POST',
@@ -14,7 +14,7 @@ export async function userControllerUser(body: API.CreateUserDto, options?: { [k
   });
 }
 
-/** 此处后端没有提供注释 GET /user/${param0} */
+/** 查询用户详情 GET /user/${param0} */
 export async function userControllerGetUserById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.UserControllerGetUserByIdParams,
@@ -28,7 +28,7 @@ export async function userControllerGetUserById(
   });
 }
 
-/** 此处后端没有提供注释 DELETE /user/${param0} */
+/** 删除用户 DELETE /user/${param0} */
 export async function userControllerDeleteUser(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.UserControllerDeleteUserParams,
@@ -42,7 +42,7 @@ export async function userControllerDeleteUser(
   });
 }
 
-/** 此处后端没有提供注释 PATCH /user/${param0} */
+/** 修改用户信息 PATCH /user/${param0} */
 export async function userControllerUpdateUser(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.UserControllerUpdateUserParams,
@@ -61,7 +61,7 @@ export async function userControllerUpdateUser(
   });
 }
 
-/** 此处后端没有提供注释 GET /users */
+/** 查询用户列表 GET /users */
 export async function userControllerUsers(options?: { [key: string]: any }) {
   return request<any>('/users', {
     method: 'GET',
@@ -69,7 +69,7 @@ export async function userControllerUsers(options?: { [key: string]: any }) {
   });
 }
 
-/** 此处后端没有提供注释 DELETE /users */
+/** 清空用户 DELETE /users */
 export async function userControllerDeleteUsers(options?: { [key: string]: any }) {
   return request<any>('/users', {
     method: 'DELETE',

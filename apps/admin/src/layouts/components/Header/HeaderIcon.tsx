@@ -10,7 +10,7 @@ import {
   PoweroffIcon,
   UserCircleIcon,
 } from 'tdesign-icons-react';
-import { useAppDispatch } from 'modules/store';
+import { useAppDispatch,store } from 'modules/store';
 import { toggleSetting } from 'modules/global';
 import { logout } from 'modules/user';
 import Style from './HeaderIcon.module.less';
@@ -18,6 +18,8 @@ import Style from './HeaderIcon.module.less';
 const { DropdownMenu, DropdownItem } = Dropdown;
 
 export default memo(() => {
+  console.log(store.getState());
+  
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

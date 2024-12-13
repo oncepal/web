@@ -51,10 +51,11 @@ export default function Login() {
         className={classnames(Style.itemContainer, `login-${loginType}`)}
         labelWidth={0}
         onSubmit={onSubmit}
+        
       >
         {loginType === 'phone' && (
           <>
-            <FormItem name='phoneNumber' rules={[{ required: true, message: '账号必填', type: 'error' }]}>
+            <FormItem initialData={'13996092317'} name='phoneNumber' rules={[{ required: true, message: '账号必填', type: 'error' }]}>
               <Input clearable size='large' placeholder='请输入11位手机号' prefixIcon={<UserIcon />}></Input>
             </FormItem>
           </>

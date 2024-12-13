@@ -2,13 +2,13 @@
 /* eslint-disable */
 // API 更新时间：
 // API 唯一标识：
-import * as auth from './auth';
-import * as caidan from './caidan';
-import * as chatroom from './chatroom';
 import * as demand from './demand';
+import * as user from './user';
+import * as auth from './auth';
+import * as chatroom from './chatroom';
 import * as post from './post';
 import * as roles from './roles';
-import * as user from './user';
+import * as menu from './menu';
 export default {
   demand,
   user,
@@ -16,5 +16,5 @@ export default {
   chatroom,
   post,
   roles,
-  caidan,
+  menu,
 };

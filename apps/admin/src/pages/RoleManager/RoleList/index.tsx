@@ -16,7 +16,7 @@ import {
 import { BrowserRouterProps } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
-import { rolesControllerFindAll } from 'services/oncepal/api/roles';
+import { rolesControllerFindAll } from 'services/api/roles';
 import { debounce } from 'lodash';
 const { FormItem } = Form;
 
@@ -61,6 +61,7 @@ const RoleManager: React.FC<BrowserRouterProps> = () => {
       form.validate({ fields: ['password'], trigger: 'blur' });
     }, 500),
   ).current;
+
   const fetchData = async (options?:any) => {
     try {
       setIsLoading(true);
