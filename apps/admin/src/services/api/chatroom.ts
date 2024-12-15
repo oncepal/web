@@ -3,7 +3,7 @@
 import request from 'utils/request';
 
 /** 此处后端没有提供注释 GET /chatroom */
-export async function chatroomControllerChatrooms(options?: { [key: string]: any }) {
+export async function chatrooms(options?: { [key: string]: any }) {
   return request<any>('/chatroom', {
     method: 'GET',
     ...(options || {}),
@@ -11,9 +11,9 @@ export async function chatroomControllerChatrooms(options?: { [key: string]: any
 }
 
 /** 此处后端没有提供注释 GET /chatroom/${param0} */
-export async function chatroomControllerChatroom(
+export async function chatroom(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.ChatroomControllerChatroomParams,
+  params: API.chatroomParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
@@ -25,9 +25,9 @@ export async function chatroomControllerChatroom(
 }
 
 /** 此处后端没有提供注释 DELETE /chatroom/${param0} */
-export async function chatroomControllerDelete(
+export async function deleteUsingDelete(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.ChatroomControllerDeleteParams,
+  params: API.deleteUsingDELETEParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
@@ -41,9 +41,9 @@ export async function chatroomControllerDelete(
 }
 
 /** 此处后端没有提供注释 PATCH /chatroom/join/${param0} */
-export async function chatroomControllerJoin(
+export async function join(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.ChatroomControllerJoinParams,
+  params: API.joinParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
@@ -57,9 +57,9 @@ export async function chatroomControllerJoin(
 }
 
 /** 此处后端没有提供注释 PATCH /chatroom/quit/${param0} */
-export async function chatroomControllerQuit(
+export async function quit(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.ChatroomControllerQuitParams,
+  params: API.quitParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
@@ -73,7 +73,7 @@ export async function chatroomControllerQuit(
 }
 
 /** 此处后端没有提供注释 POST /chatroom/single */
-export async function chatroomControllerSingle(body: API.CreateChatroomDto, options?: { [key: string]: any }) {
+export async function single(body: API.CreateChatroomDto, options?: { [key: string]: any }) {
   return request<any>('/chatroom/single', {
     method: 'POST',
     headers: {

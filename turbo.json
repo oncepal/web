@@ -12,7 +12,8 @@
       "persistent": true
 
     },
-  
+    "api": {
+    },
     "lint": {},
     "clean": {
       "cache": false

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { authControllerLogInWithRegister } from 'services/api/auth';
+import { logInWithRegister } from 'services/api/auth';
 const namespace = 'user';
 const TOKEN_NAME = 'access_token';
 const REFRESH_TOKEN_NAME = 'refresh_token';
@@ -13,7 +13,7 @@ const initialState = {
 
 // login
 export const login = createAsyncThunk(`${namespace}/login`, async (userInfo: API.LogInDto) => {
-  const res:any = await authControllerLogInWithRegister(userInfo);
+  const res:any = await logInWithRegister(userInfo);
   console.log(res)
 
   if (res.code === 200) {

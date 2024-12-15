@@ -3,7 +3,7 @@
 import request from 'utils/request';
 
 /** 获取验证码 POST /auth/captcha */
-export async function authControllerCaptcha(body: API.GetCaptchaDto, options?: { [key: string]: any }) {
+export async function captcha(body: API.GetCaptchaDto, options?: { [key: string]: any }) {
   return request<API.GetCaptchaDto>('/auth/captcha', {
     method: 'POST',
     headers: {
@@ -15,7 +15,7 @@ export async function authControllerCaptcha(body: API.GetCaptchaDto, options?: {
 }
 
 /** 用户登录 POST /auth/login */
-export async function authControllerLogin(body: API.LogInDto, options?: { [key: string]: any }) {
+export async function login(body: API.LogInDto, options?: { [key: string]: any }) {
   return request<API.LogInDto>('/auth/login', {
     method: 'POST',
     headers: {
@@ -27,7 +27,7 @@ export async function authControllerLogin(body: API.LogInDto, options?: { [key: 
 }
 
 /** 用户登录并注册 POST /auth/loginWithRegister */
-export async function authControllerLogInWithRegister(body: API.LogInDto, options?: { [key: string]: any }) {
+export async function logInWithRegister(body: API.LogInDto, options?: { [key: string]: any }) {
   return request<API.LogInDto>('/auth/loginWithRegister', {
     method: 'POST',
     headers: {
@@ -39,7 +39,7 @@ export async function authControllerLogInWithRegister(body: API.LogInDto, option
 }
 
 /** 用户登出 POST /auth/logout */
-export async function authControllerLogout(body: API.LogOutDto, options?: { [key: string]: any }) {
+export async function logout(body: API.LogOutDto, options?: { [key: string]: any }) {
   return request<any>('/auth/logout', {
     method: 'POST',
     headers: {
@@ -51,9 +51,9 @@ export async function authControllerLogout(body: API.LogOutDto, options?: { [key
 }
 
 /** 刷新 token GET /auth/refresh */
-export async function authControllerRefresh(
+export async function refresh(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.AuthControllerRefreshParams,
+  params: API.refreshParams,
   options?: { [key: string]: any },
 ) {
   return request<API.RefreshDto>('/auth/refresh', {
@@ -66,7 +66,7 @@ export async function authControllerRefresh(
 }
 
 /** 用户注册 POST /auth/register */
-export async function authControllerRegister(body: API.RegisterDto, options?: { [key: string]: any }) {
+export async function register(body: API.RegisterDto, options?: { [key: string]: any }) {
   return request<API.RegisterDto>('/auth/register', {
     method: 'POST',
     headers: {

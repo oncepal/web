@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "gen:server": "openapi2ts",
+    "api": "openapi2ts",
     "dev:mock": "vite --open --mode mock",
     "dev": "vite --open --mode development",
     "dev:linux": "vite --mode development",

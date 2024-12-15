@@ -17,7 +17,7 @@ import { BrowserRouterProps } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
 import dayjs from 'dayjs';
-import { userControllerUsers } from 'services/api/user';
+import { getUsers } from 'services/api/user';
 import { debounce } from 'lodash';
 const { FormItem } = Form;
 
@@ -36,7 +36,7 @@ interface User {
 
 const UserManager: React.FC<BrowserRouterProps> = () => {
   const [form] = Form.useForm();
-  const [dataSource, setDataSource] = useState<User[]>([]);
+  const [dataSource, setDataSource] = useState<API.UserDto[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const onSubmit: FormProps['onSubmit'] = (e) => {
     console.log(e);
@@ -69,7 +69,7 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
   const fetchData = async (options?: any) => {
     try {
       setIsLoading(true);
-      const result = await userControllerUsers(options);
+      const result = await getUsers(options);
       setDataSource(result.data);
       setIsLoading(false);
     } catch (error) {
@@ -177,7 +177,7 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
             </Button>
           </FormItem>
         </Form>
-        <Table
+        <Table<API.UserDto>
           loading={isLoading}
           data={dataSource}
           columns={columns}

@@ -7,6 +7,7 @@
     "app": "turbo run dev --filter=@oncepal/native",
     "h5": "turbo run dev --filter=@oncepal/h5",
     "admin": "turbo run dev --filter=@oncepal/admin",
+    "admin:api": "turbo run api --filter=@oncepal/admin",
     "dev:test": "turbo run dev --filter=@oncepal/test",
     "dev:charts": "turbo run dev --filter=@oncepal/charts",
     "build": "turbo run build",

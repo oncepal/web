@@ -3,7 +3,7 @@ import { Row, Col, Button, Table, Pagination, List, Message, MessagePlugin } fro
 import { BrowserRouterProps } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
-import { menusControllerFindAll } from 'services/api/caidan';
+import { findAll } from 'services/api/menu';
 
 const { ListItem, ListItemMeta } = List;
 
@@ -24,7 +24,7 @@ const MenuManager: React.FC<BrowserRouterProps> = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const result = await menusControllerFindAll();
+        const result = await findAll();
         setDataSource(result.data);
         setIsLoading(false);
       } catch (error) {

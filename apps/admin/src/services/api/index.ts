@@ -7,7 +7,7 @@ import * as user from './user';
 import * as auth from './auth';
 import * as chatroom from './chatroom';
 import * as post from './post';
-import * as roles from './roles';
+import * as role from './role';
 import * as menu from './menu';
 export default {
   demand,
@@ -15,6 +15,6 @@ export default {
   auth,
   chatroom,
   post,
-  roles,
+  role,
   menu,
 };

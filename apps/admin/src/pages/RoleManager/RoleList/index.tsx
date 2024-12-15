@@ -16,7 +16,7 @@ import {
 import { BrowserRouterProps } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
-import { rolesControllerFindAll } from 'services/api/roles';
+import { findAll } from 'services/api/role';
 import { debounce } from 'lodash';
 const { FormItem } = Form;
 
@@ -65,7 +65,7 @@ const RoleManager: React.FC<BrowserRouterProps> = () => {
   const fetchData = async (options?:any) => {
     try {
       setIsLoading(true);
-      const result = await rolesControllerFindAll(options);
+      const result = await findAll(options);
       setDataSource(result.data);
       setIsLoading(false);
     } catch (error) {

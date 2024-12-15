@@ -3,7 +3,7 @@
 import request from 'utils/request';
 
 /** 此处后端没有提供注释 POST /post */
-export async function postControllerPost(body: API.CreatePostDto, options?: { [key: string]: any }) {
+export async function post(body: API.CreatePostDto, options?: { [key: string]: any }) {
   return request<any>('/post', {
     method: 'POST',
     headers: {
@@ -15,9 +15,9 @@ export async function postControllerPost(body: API.CreatePostDto, options?: { [k
 }
 
 /** 此处后端没有提供注释 GET /post/${param0} */
-export async function postControllerGetPostById(
+export async function getPostById(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.PostControllerGetPostByIdParams,
+  params: API.getPostByIdParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
@@ -29,9 +29,9 @@ export async function postControllerGetPostById(
 }
 
 /** 此处后端没有提供注释 DELETE /post/${param0} */
-export async function postControllerDeletePost(
+export async function deletePost(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.PostControllerDeletePostParams,
+  params: API.deletePostParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
@@ -43,9 +43,9 @@ export async function postControllerDeletePost(
 }
 
 /** 此处后端没有提供注释 PATCH /post/${param0} */
-export async function postControllerUpdatePost(
+export async function updatePost(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.PostControllerDeletePostParams,
+  params: API.updatePostParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
@@ -57,7 +57,7 @@ export async function postControllerUpdatePost(
 }
 
 /** 此处后端没有提供注释 GET /posts */
-export async function postControllerPosts(options?: { [key: string]: any }) {
+export async function posts(options?: { [key: string]: any }) {
   return request<any>('/posts', {
     method: 'GET',
     ...(options || {}),
@@ -65,7 +65,7 @@ export async function postControllerPosts(options?: { [key: string]: any }) {
 }
 
 /** 此处后端没有提供注释 DELETE /posts */
-export async function postControllerDeletePosts(options?: { [key: string]: any }) {
+export async function deletePosts(options?: { [key: string]: any }) {
   return request<any>('/posts', {
     method: 'DELETE',
     ...(options || {}),

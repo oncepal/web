@@ -3,7 +3,7 @@
 import request from 'utils/request';
 
 /** 获取所有菜单 GET /menus */
-export async function menusControllerFindAll(options?: { [key: string]: any }) {
+export async function findAll(options?: { [key: string]: any }) {
   return request<any>('/menus', {
     method: 'GET',
     ...(options || {}),
@@ -11,7 +11,7 @@ export async function menusControllerFindAll(options?: { [key: string]: any }) {
 }
 
 /** 创建菜单 POST /menus */
-export async function menusControllerCreate(body: API.CreateMenuDto, options?: { [key: string]: any }) {
+export async function create(body: API.CreateMenuDto, options?: { [key: string]: any }) {
   return request<any>('/menus', {
     method: 'POST',
     headers: {
@@ -23,9 +23,9 @@ export async function menusControllerCreate(body: API.CreateMenuDto, options?: {
 }
 
 /** 根据ID获取菜单 GET /menus/${param0} */
-export async function menusControllerFindOne(
+export async function findOne(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.MenusControllerFindOneParams,
+  params: API.findOneParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
@@ -37,9 +37,9 @@ export async function menusControllerFindOne(
 }
 
 /** 根据ID更新菜单 PUT /menus/${param0} */
-export async function menusControllerUpdate(
+export async function update(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.MenusControllerUpdateParams,
+  params: API.updateParams,
   body: API.UpdateMenuDto,
   options?: { [key: string]: any },
 ) {
@@ -56,9 +56,9 @@ export async function menusControllerUpdate(
 }
 
 /** 根据ID删除菜单 DELETE /menus/${param0} */
-export async function menusControllerDelete(
+export async function deleteUsingDelete(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.MenusControllerDeleteParams,
+  params: API.deleteUsingDELETEParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;
