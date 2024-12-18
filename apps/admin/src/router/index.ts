@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { BrowserRouterProps, Navigate } from 'react-router-dom';
 import result from './modules/result';
-import rolemanager from './modules/rolemanager';
+import rolemanager from './modules/managers';
 import login from './modules/login';
 import otherRoutes from './modules/others';
 
