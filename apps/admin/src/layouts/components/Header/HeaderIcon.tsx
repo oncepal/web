@@ -18,18 +18,8 @@ import Style from './HeaderIcon.module.less';
 const { DropdownMenu, DropdownItem } = Dropdown;
 
 export default memo(() => {
-  console.log(store.getState());
-  
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const gotoWiki = () => {
-    window.open('https://tdesign.tencent.com/react/overview');
-  };
-
-  const gotoGitHub = () => {
-    window.open('https://github.com/Tencent/tdesign-react-starter');
-  };
 
   const clickHandler = (data: any) => {
     if (data.value === 1) {
@@ -49,7 +39,7 @@ export default memo(() => {
       <Dropdown trigger={'click'} onClick={clickHandler}>
         <Button variant='text' className={Style.dropdown}>
           <Icon name='user-circle' className={Style.icon} />
-          <span className={Style.text}>Tencent</span>
+          <span className={Style.text}>{'我'}</span>
           <Icon name='chevron-down' className={Style.icon} />
         </Button>
         <DropdownMenu>
