@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { BrowserRouterProps, Navigate } from 'react-router-dom';
 import result from './modules/result';
-import rolemanager from './modules/managers';
+import managements from './modules/managements';
 import login from './modules/login';
 import otherRoutes from './modules/others';
 
@@ -40,13 +40,9 @@ const routes: IRouter[] = [
       hidden: true,
     },
   },
-  {
-    path: '/',
-    redirect: '/rolemanager/userlist',
-  },
 ];
 
-const allRoutes = [...routes, ...rolemanager, ...result, ...otherRoutes];
+const allRoutes = [...routes, ...managements, ...result, ...otherRoutes];
 
 
 

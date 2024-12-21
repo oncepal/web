@@ -97,17 +97,21 @@ export default memo((props: IMenuProps) => {
   const [expanded, setExpanded] = useState<Array<MenuValue>>([]); // 修改 expanded 状态类型
 
   const { version } = globalState;
-  const bottomText = globalState.collapsed ? version : `ONCEPAL ${version}`;
+  const bottomText = globalState.collapsed ? version : `ONCEPAL ADMIN ${version}`;
 
+  
   useEffect(() => {
     const currentPath = location.pathname;
     const expandedPaths = router.reduce((acc: Array<MenuValue>, item: IRouter) => {
+      
+      
       if (currentPath.startsWith(item.path)) {
         acc.push(item.path);
       }
       return acc;
     }, []);
-    setExpanded(expandedPaths);
+    
+    setExpanded(es=>[...new Set([...es,...expandedPaths])]);
   }, [location.pathname]);
 
   return (
