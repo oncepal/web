@@ -14,12 +14,12 @@ import { useAppDispatch,store } from 'modules/store';
 import { toggleSetting } from 'modules/global';
 import { logout } from 'modules/user';
 import Style from './HeaderIcon.module.less';
+import { useUserInfoStore } from 'stores';
 
 const { DropdownMenu, DropdownItem } = Dropdown;
 
 export default memo(() => {
-  console.log(store.getState());
-  
+  const userInfo = useUserInfoStore.use.userInfo()
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -69,7 +69,7 @@ export default memo(() => {
       <Dropdown trigger={'click'} onClick={clickHandler}>
         <Button variant='text' className={Style.dropdown}>
           <Icon name='user-circle' className={Style.icon} />
-          <span className={Style.text}>Tencent</span>
+          <span className={Style.text}>{userInfo?.profile?.bio}</span>
           <Icon name='chevron-down' className={Style.icon} />
         </Button>
         <DropdownMenu>
