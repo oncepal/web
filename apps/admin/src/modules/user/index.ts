@@ -55,7 +55,6 @@ const userSlice = createSlice({
   },
 });
 
-export const selectListBase = (state: RootState) => state.listBase;
 
 export const { logout, remove } = userSlice.actions;
 

@@ -4,11 +4,11 @@ import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, Su
 import { LockOnIcon, UserIcon, BrowseOffIcon, BrowseIcon, RefreshIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
 import QRCode from 'qrcode.react';
-import { useAppDispatch } from 'modules/store';
-import { login } from 'modules/user';
+import { useAuthStore } from 'stores';
 import useCountdown from '../../hooks/useCountDown';
 
 import Style from './index.module.less';
+import { logInWithRegister } from 'services/api/auth';
 
 const { FormItem } = Form;
 
@@ -19,17 +19,29 @@ export default function Login() {
   const { countdown, setupCountdown } = useCountdown(60);
   const formRef = useRef<FormInstanceFunctions>();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const updateLoginState = useAuthStore.use.updateLoginState();
 
   const onSubmit = async (e: SubmitContext) => {
     if (e.validateResult === true) {
       try {
         const formValue = (formRef.current?.getFieldsValue?.(true) || {}) as API.LogInDto;
-       const res:any =  await dispatch(login(formValue));
-       console.log("res",res)
-       if(res.error){
-        throw(res.error.message)
-       }
+        const res: any = await logInWithRegister(formValue);
+        console.log(res);
+
+       
+        console.log('res', res);
+        if (res.error) {
+          throw res.error.message;
+        } 
+        
+        if (res.code === 200) {
+          updateLoginState({
+            accessToken: res.data.accessToken,
+            refreshToken: res.data.refreshToken,
+            userId: res.data.userInfo.id,
+          });
+          
+        }
         MessagePlugin.success('登录成功');
         navigate('/');
       } catch (e) {
@@ -51,11 +63,14 @@ export default function Login() {
         className={classnames(Style.itemContainer, `login-${loginType}`)}
         labelWidth={0}
         onSubmit={onSubmit}
-        
       >
         {loginType === 'phone' && (
           <>
-            <FormItem initialData={'13996092317'} name='phoneNumber' rules={[{ required: true, message: '账号必填', type: 'error' }]}>
+            <FormItem
+              initialData={'13996092317'}
+              name='phoneNumber'
+              rules={[{ required: true, message: '账号必填', type: 'error' }]}
+            >
               <Input clearable size='large' placeholder='请输入11位手机号' prefixIcon={<UserIcon />}></Input>
             </FormItem>
           </>
@@ -114,7 +129,7 @@ export default function Login() {
             <span className='tip' onClick={() => switchType('verifyCode')}>
               使用验证码登录
             </span>
-          )} 
+          )}
         </div>
       </Form>
     </div>

@@ -21,6 +21,7 @@ export default (params) => {
         modules: path.resolve(__dirname, './src/modules'),
         pages: path.resolve(__dirname, './src/pages'),
         styles: path.resolve(__dirname, './src/styles'),
+        stores: path.resolve(__dirname, './src/stores'),
         utils: path.resolve(__dirname, './src/utils'),
         services: path.resolve(__dirname, './src/services'),
         router: path.resolve(__dirname, './src/router'),

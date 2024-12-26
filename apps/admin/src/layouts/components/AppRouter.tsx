@@ -57,7 +57,7 @@ const AppRouter = () => (
         </div>
       }
     >
-      <Routes>{renderRoutes(routers)}</Routes>
+      <Routes >{renderRoutes(routers)}</Routes>
     </Suspense>
   </Content>
 );

@@ -116,7 +116,7 @@ export default memo((props: IMenuProps) => {
 
   return (
     <Menu
-      width='232px'
+      width='15%'
       style={{ flexShrink: 0, height: '100%' }}
       className={Style.menuPanel2}
       value={location.pathname}
