@@ -71,6 +71,9 @@ importers:
       tvision-color:
         specifier: ^1.5.0
         version: 1.6.0
+      zustand:
+        specifier: ^5.0.2
+        version: 5.0.2(@types/react@18.2.79)(immer@9.0.21)(react@18.2.0)
     devDependencies:
       '@honkhonk/vite-plugin-svgr':
         specifier: ^1.1.0
@@ -9275,6 +9278,24 @@ packages:
 
   zrender@5.6.0:
     resolution: {integrity: sha512-uzgraf4njmmHAbEUxMJ8Oxg+P3fT04O+9p7gY+wJRVxo8Ge+KmYv0WJev945EH4wFuc4OY2NLXz46FZrWS9xJg==}
+
+  zustand@5.0.2:
+    resolution: {integrity: sha512-8qNdnJVJlHlrKXi50LDqqUNmUbuBjoKLrYQBnoChIbVph7vni+sY+YpvdjXG9YLd/Bxr6scMcR+rm5H3aSqPaw==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
 
 snapshots:
 
@@ -20382,3 +20403,9 @@ snapshots:
   zrender@5.6.0:
     dependencies:
       tslib: 2.3.0
+
+  zustand@5.0.2(@types/react@18.2.79)(immer@9.0.21)(react@18.2.0):
+    optionalDependencies:
+      '@types/react': 18.2.79
+      immer: 9.0.21
+      react: 18.2.0
