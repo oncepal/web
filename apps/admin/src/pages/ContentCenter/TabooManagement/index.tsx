@@ -12,30 +12,33 @@ import {
   FormProps,
   MessagePlugin,
   CustomValidator,
+  Drawer,
 } from 'tdesign-react';
 import { BrowserRouterProps } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
-import { findAll } from 'services/api/role';
+// import { createTaboo, getTaboos } from 'services/api/taboo';
 import { debounce } from 'lodash';
+import client from 'services';
 const { FormItem } = Form;
 
 const { ListItem, ListItemMeta } = List;
 
 
-const Taboo: React.FC<BrowserRouterProps> = () => {
+const TabooManagement: React.FC<BrowserRouterProps> = () => {
   const [form] = Form.useForm();
+  const [formDrawer] = Form.useForm();
   const [dataSource, setDataSource] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const onSubmit: FormProps['onSubmit'] = (e) => {
     console.log(e);
     if (e.validateResult === true) {
-      fetchData(e?.fields)
+      fetchTabooList(e?.fields)
     }
   };
 
   const onReset: FormProps['onReset'] = (e) => {
-    fetchData(form.getFieldsValue([]))
+    fetchTabooList(form?.getFieldsValue([]))
   };
   const asyncValidate: CustomValidator = (val) =>
     new Promise((resolve) => {
@@ -51,29 +54,35 @@ const Taboo: React.FC<BrowserRouterProps> = () => {
   const handleChange = useRef(
     debounce((value) => {
       console.log('value', value);
-      form.validate({ fields: ['password'], trigger: 'blur' });
+      form?.validate({ fields: ['password'], trigger: 'blur' });
     }, 500),
   ).current;
 
-  const fetchData = async (options?:any) => {
+  const fetchTabooList = async (options?:any) => {
     try {
       setIsLoading(true);
-      const result = await findAll(options);
-      setDataSource(result.data);
+      const { data, error } = await client.GET("/taboos", {
+        params: {
+          query: options,
+        },
+      });
+      // const result = await getTaboos(options);
+      setDataSource(data||[]);
       setIsLoading(false);
     } catch (error) {
       console.error('请求失败，请稍后重试', error);
       setIsLoading(false);
     }
   };
+
+
   useEffect(() => {
-    
-    fetchData();
+    fetchTabooList();
   }, []);
 
   // 表格列定义
   const columns = [
-    { colKey: 'name', title: '违禁词ID' },
+    { colKey: 'id', title: '违禁词ID' },
     { colKey: 'name', title: '违禁词名称' },
     { colKey: 'description', title: '违禁词描述' },
     { colKey: 'createdAt', title: '创建时间' },
@@ -96,8 +105,31 @@ const Taboo: React.FC<BrowserRouterProps> = () => {
 
   const containerRef = useRef<any>(null);
   const [tableOffsetTop, setTableOffectTop] = useState(0);
+  const [visible, setVisible] = useState(false);
 
+  const handleClick = () => {
+    setVisible(true);
+  };
+  const handleClose = () => {
+    formDrawer?.reset()
+    setVisible(false);
+  };
   const size = useSize(containerRef);
+
+
+  const handleUpdateTaboo = async ()=>{
+    try {
+      const taboo = formDrawer?.getFieldsValue('name') 
+
+    const { data, error } = await client.POST("/taboo", {
+      body: taboo ,
+    });
+      
+      handleClose()
+    } catch (error) {
+      console.error('请求失败，请稍后重试', error);
+    }
+  }
 
   useEffect(() => {
     if (containerRef.current) setTableOffectTop(containerRef?.current?.offsetTop + 104);
@@ -107,14 +139,17 @@ const Taboo: React.FC<BrowserRouterProps> = () => {
     <div className={styles.container} ref={containerRef}>
       <Space direction='vertical'>
         <h2>违禁词管理</h2>
-        <Form colon	={true} layout={'inline'} form={form} onSubmit={onSubmit} labelWidth={100} onReset={onReset} labelAlign="left">
-          <FormItem label='违禁词名称' name='roleName'>
+        <Form colon layout={'inline'} form={form} onSubmit={onSubmit} labelWidth={100} onReset={onReset} labelAlign="left">
+          <FormItem label='违禁词名称' name='name'>
             <Input />
           </FormItem>
-          <FormItem label='违禁词Id' name='roleId'>
+          <FormItem label='违禁词Id' name='id'>
             <Input />
           </FormItem>
           <FormItem>
+          <Button theme='primary' onClick={handleClick} style={{ marginRight: 10 }}>
+              新增
+            </Button>
             <Button theme='primary' type='submit' style={{ marginRight: 10 }}>
               查询
             </Button>
@@ -145,8 +180,18 @@ const Taboo: React.FC<BrowserRouterProps> = () => {
           />
         )}
       </Space>
+      <Drawer header="新增违禁词" visible={visible} onClose={handleClose} onConfirm={handleUpdateTaboo}>
+        <Form colon labelAlign="top" form={formDrawer} layout={'vertical'}>
+          <Form.FormItem label="违禁词名称" name={'name'}>
+            <Input />
+          </Form.FormItem>
+          <Form.FormItem label="违禁词描述" name={'description'}>
+            <Input />
+          </Form.FormItem>
+        </Form>
+      </Drawer>
     </div>
   );
 };
 
-export default memo(Taboo);
+export default memo(TabooManagement);

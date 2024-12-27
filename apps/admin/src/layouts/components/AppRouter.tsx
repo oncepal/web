@@ -1,5 +1,5 @@
-import React, { Suspense, memo } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import React, { Suspense, memo, useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Layout, Loading } from 'tdesign-react';
 import routers, { IRouter } from 'router';
 import { resolve } from 'utils/path';
@@ -48,8 +48,17 @@ const renderRoutes: TRenderRoutes = (routes, parentPath = '', breadcrumb = []) =
     return children ? renderRoutes(children, currentPath, currentBreadcrumb) : null;
   });
 
-const AppRouter = () => (
-  <Content>
+const AppRouter = () => {
+  const location = useLocation() 
+  const navigate = useNavigate()
+  // useEffect(()=>{
+
+  //   if(!localStorage.getItem("accessToken")){
+  //     navigate('/login')
+  //   }
+
+  // },[location])
+  return <Content>
     <Suspense
       fallback={
         <div className={Style.loading}>
@@ -60,6 +69,6 @@ const AppRouter = () => (
       <Routes >{renderRoutes(routers)}</Routes>
     </Suspense>
   </Content>
-);
+};
 
 export default memo(AppRouter);

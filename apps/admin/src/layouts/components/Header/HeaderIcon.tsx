@@ -12,14 +12,13 @@ import {
 } from 'tdesign-icons-react';
 import { useAppDispatch,store } from 'modules/store';
 import { toggleSetting } from 'modules/global';
-import { logout } from 'modules/user';
 import Style from './HeaderIcon.module.less';
 import { useAuthStore } from 'stores';
 
 const { DropdownMenu, DropdownItem } = Dropdown;
 
 export default memo(() => {
-  const userId = useAuthStore.use.userId()
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -29,7 +28,7 @@ export default memo(() => {
     }
   };
   const handleLogout = async () => {
-    await dispatch(logout());
+    useAuthStore.use.removeLoginState()
     navigate('/login');
   };
 
@@ -41,7 +40,7 @@ export default memo(() => {
       <Dropdown trigger={'click'} onClick={clickHandler}>
         <Button variant='text' className={Style.dropdown}>
           <Icon name='user-circle' className={Style.icon} />
-          <span className={Style.text}>{userId}</span>
+          <span className={Style.text}>{useAuthStore.use.userId()}</span>
           <Icon name='chevron-down' className={Style.icon} />
         </Button>
         <DropdownMenu>

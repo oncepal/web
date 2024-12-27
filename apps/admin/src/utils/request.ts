@@ -14,7 +14,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('accessToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     } 
@@ -45,7 +45,7 @@ instance.interceptors.response.use(
         try {
           const response = await axios.post(`${API_HOST}/auth/refresh`, { refreshToken });
           const { accessToken } = response.data;
-          localStorage.setItem('access_token', accessToken);
+          localStorage.setItem('accessToken', accessToken);
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
           return instance(originalRequest);
         } catch (refreshError) {

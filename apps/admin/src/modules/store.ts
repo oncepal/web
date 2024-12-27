@@ -2,11 +2,9 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 
 import global from './global';
-import user from './user';
 
 const reducer = combineReducers({
   global,
-  user,
 
 });
 
