@@ -17,26 +17,13 @@ import { BrowserRouterProps } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
 import dayjs from 'dayjs';
-import { getUsers } from 'services/api/user';
+import { getUsers, UserDto } from 'services';
 import { debounce } from 'lodash';
 const { FormItem } = Form;
 
-interface User {
-  profile: null;
-  id: string;
-  phoneNumber: string;
-  status: string;
-  isSuperPal: boolean;
-  views: number;
-  achievementIds: string[];
-  chatroomIds: string[];
-  createdAt: string;
-  updatedAt: string;
-}
-
 const TaskManagement: React.FC<BrowserRouterProps> = () => {
   const [form] = Form.useForm();
-  const [dataSource, setDataSource] = useState<API.UserDto[]>([]);
+  const [dataSource, setDataSource] = useState<UserDto[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const onSubmit: FormProps['onSubmit'] = (e) => {
     console.log(e);
@@ -46,7 +33,7 @@ const TaskManagement: React.FC<BrowserRouterProps> = () => {
   };
 
   const onReset: FormProps['onReset'] = (e) => {
-    fetchData(form.getFieldsValue([]));
+    fetchData(form?.getFieldsValue([]));
   };
   const asyncValidate: CustomValidator = (val) =>
     new Promise((resolve) => {
@@ -62,16 +49,18 @@ const TaskManagement: React.FC<BrowserRouterProps> = () => {
   const handleChange = useRef(
     debounce((value) => {
       console.log('value', value);
-      form.validate({ fields: ['password'], trigger: 'blur' });
+      form?.validate({ fields: ['password'], trigger: 'blur' });
     }, 500),
   ).current;
 
   const fetchData = async (options?: any) => {
     try {
       setIsLoading(true);
-      const result = await getUsers(options);
-      setDataSource(result.data);
-      setIsLoading(false);
+      const { data } = await getUsers(options);
+      if (data) {
+        setDataSource(data);
+        setIsLoading(false);
+      }
     } catch (error) {
       console.error('请求失败，请稍后重试', error);
       setIsLoading(false);
@@ -81,15 +70,13 @@ const TaskManagement: React.FC<BrowserRouterProps> = () => {
   //   fetchData();
   // }, []);
 
-  console.log("页面刷新");
-  
+  console.log('页面刷新');
 
   // 表格列定义
   const columns = [
-    
-    { colKey: 'id', title: 'ID',width: 220 },
-    { colKey: 'phoneNumber', title: '电话号码', width: 120, },
-    { width:80,colKey: 'status', title: '状态' },
+    { colKey: 'id', title: 'ID', width: 220 },
+    { colKey: 'phoneNumber', title: '电话号码', width: 120 },
+    { width: 80, colKey: 'status', title: '状态' },
     {
       colKey: 'isSuperPal',
       title: '是否超级用户',
@@ -98,10 +85,10 @@ const TaskManagement: React.FC<BrowserRouterProps> = () => {
         return row.isSuperPal ? '是' : '否';
       },
     },
-    { colKey: 'views', title: '主页浏览次数', width: 120, },
+    { colKey: 'views', title: '主页浏览次数', width: 120 },
     {
       colKey: 'role',
-      width:80,
+      width: 80,
       title: '角色',
       cell: ({ row }: any) => {
         const roles = row.roles?.join(',');
@@ -133,7 +120,7 @@ const TaskManagement: React.FC<BrowserRouterProps> = () => {
           <Button theme='primary' variant='text' size='small'>
             编辑
           </Button>
-          <Button theme='danger' variant='text'  size='small'>
+          <Button theme='danger' variant='text' size='small'>
             删除
           </Button>
         </div>
@@ -177,7 +164,7 @@ const TaskManagement: React.FC<BrowserRouterProps> = () => {
             </Button>
           </FormItem>
         </Form>
-        <Table<API.UserDto>
+        <Table
           loading={isLoading}
           data={dataSource}
           columns={columns}

@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { CheckCircleIcon } from 'tdesign-icons-react';
-import { IRouter } from '../index';
+import { Router } from './index';
 
-const result: IRouter[] = [
+const result: Router[] = [
   {
     path: '/result',
     meta: {

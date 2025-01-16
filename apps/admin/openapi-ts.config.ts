@@ -1,20 +1,17 @@
-import { createClient, defaultPlugins } from '@hey-api/openapi-ts';
+import { defineConfig, defaultPlugins } from '@hey-api/openapi-ts';
 
-createClient({
+export default defineConfig({
   client: '@hey-api/client-fetch',
-  input: {
-    path:'./api.yaml'
-  },
-  experimentalParser: true, 
+  input: 'http://localhost:1996/api-json',
   output: {
     format: 'prettier',
-    path: './src/client',
+    path: 'src/api',
   },
   plugins: [
     ...defaultPlugins,
     {
-      enums: 'javascript',
       name: '@hey-api/typescript',
+      // ...custom options
     },
   ],
 });

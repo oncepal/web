@@ -8,7 +8,7 @@ import { useAuthStore } from 'stores';
 import useCountdown from '../../hooks/useCountDown';
 
 import Style from './index.module.less';
-import { logInWithRegister } from 'services/api/auth';
+import { LogInDto, logInWithRegister } from 'services';
 
 const { FormItem } = Form;
 
@@ -24,26 +24,18 @@ export default function Login() {
   const onSubmit = async (e: SubmitContext) => {
     if (e.validateResult === true) {
       try {
-        const formValue = (formRef.current?.getFieldsValue?.(true) || {}) as API.LogInDto;
-        const res: any = await logInWithRegister(formValue);
-        console.log(res);
+        const formValue = (formRef.current?.getFieldsValue?.(true) || {}) as LogInDto;
+        const { data } = await logInWithRegister({ body: formValue });
 
-       
-        console.log('res', res);
-        if (res.error) {
-          throw res.error.message;
-        } 
-        
-        if (res.code === 200) {
+        if (data?.code === 200 && data?.data) {
           updateLoginState({
-            accessToken: res.data.accessToken,
-            refreshToken: res.data.refreshToken,
-            userId: res.data.userInfo.id,
+            accessToken: data.data.accessToken,
+            refreshToken: data.data.refreshToken,
+            userId: data.data.userInfo.id,
           });
-          
+          MessagePlugin.success('登录成功');
+          navigate('/');
         }
-        MessagePlugin.success('登录成功');
-        navigate('/');
       } catch (e) {
         console.log(e);
         MessagePlugin.error('登录失败');

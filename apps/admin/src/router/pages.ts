@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { UserCircleIcon } from 'tdesign-icons-react';
-import { IRouter } from '../index';
+import { Router } from './index';
 
-const managements: IRouter[] = [
+const pages: Router[] = [
   {
     path: 'contentCenter',
     meta: {
@@ -99,4 +99,4 @@ const managements: IRouter[] = [
 
 ];
 
-export default managements;
+export default pages;

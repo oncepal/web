@@ -14,12 +14,11 @@ import {
   CustomValidator,
   Drawer,
 } from 'tdesign-react';
-import { BrowserRouterProps } from 'react-router-dom';
+import { BrowserRouterProps, redirect } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
-// import { createTaboo, getTaboos } from 'services/api/taboo';
 import { debounce } from 'lodash';
-import client from 'services';
+import { createTaboo, CreateTabooDto, getTaboos} from 'services';
 const { FormItem } = Form;
 
 const { ListItem, ListItemMeta } = List;
@@ -61,13 +60,14 @@ const TabooManagement: React.FC<BrowserRouterProps> = () => {
   const fetchTabooList = async (options?:any) => {
     try {
       setIsLoading(true);
-      const { data, error } = await client.GET("/taboos", {
-        params: {
-          query: options,
-        },
-      });
-      // const result = await getTaboos(options);
-      setDataSource(data||[]);
+      const {data,response} = await getTaboos();
+      if (response.status === 401) {
+        console.log(124124);
+        
+        redirect('/login');
+      }
+      
+      setDataSource(data?.data||[]);
       setIsLoading(false);
     } catch (error) {
       console.error('请求失败，请稍后重试', error);
@@ -119,9 +119,9 @@ const TabooManagement: React.FC<BrowserRouterProps> = () => {
 
   const handleUpdateTaboo = async ()=>{
     try {
-      const taboo = formDrawer?.getFieldsValue('name') 
+      const taboo = formDrawer?.getFieldsValue(['name'])  as CreateTabooDto
 
-    const { data, error } = await client.POST("/taboo", {
+    const { data, error } = await createTaboo({
       body: taboo ,
     });
       

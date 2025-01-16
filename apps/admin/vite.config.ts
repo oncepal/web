@@ -27,6 +27,7 @@ export default (params) => {
         router: path.resolve(__dirname, './src/router'),
         hooks: path.resolve(__dirname, './src/hooks'),
         types: path.resolve(__dirname, './src/types'),
+        api: path.resolve(__dirname, './src/api'),
       },
     },
 
@@ -61,7 +62,7 @@ export default (params) => {
         '/api': {
           // 用于开发环境下的转发请求
           // 更多请参考：https://vitejs.dev/config/#server-proxy
-          target: 'https://service-exndqyuk-1257786608.gz.apigw.tencentcs.com',
+          target: 'http://localhost:1996',
           changeOrigin: true,
         },
       },

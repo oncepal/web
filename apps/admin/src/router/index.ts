@@ -1,11 +1,10 @@
 import React, { lazy } from 'react';
 import { BrowserRouterProps, Navigate } from 'react-router-dom';
-import result from './modules/result';
-import managements from './modules/managements';
-import login from './modules/login';
-import otherRoutes from './modules/others';
-
-export interface IRouter {
+import result from './result';
+import pages from './pages';
+import otherRoutes from './others';
+import Login from '../pages/Login'
+export interface Router {
   path: string;
   redirect?: string;
   Component?: React.FC<BrowserRouterProps> | (() => any);
@@ -28,10 +27,10 @@ export interface IRouter {
      */
     single?: boolean;
   };
-  children?: IRouter[];
+  children?: Router[];
 }
 
-const routes: IRouter[] = [
+const baseRoutes: Router[] = [
   {
     path: '/login',
     Component: lazy(() => import('pages/Login')),
@@ -42,7 +41,7 @@ const routes: IRouter[] = [
   },
 ];
 
-const allRoutes = [...routes, ...managements, ...result, ...otherRoutes];
+const allRoutes = [...baseRoutes, ...pages, ...result, ...otherRoutes];
 
 
 

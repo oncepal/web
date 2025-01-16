@@ -1,14 +1,14 @@
 import React, { Suspense, memo, useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Layout, Loading } from 'tdesign-react';
-import routers, { IRouter } from 'router';
+import routers, { Router } from 'router';
 import { resolve } from 'utils/path';
 import Page from './Page';
 import Style from './AppRouter.module.less';
 
 const { Content } = Layout;
 
-type TRenderRoutes = (routes: IRouter[], parentPath?: string, breadcrumbs?: string[]) => React.ReactNode[];
+type TRenderRoutes = (routes: Router[], parentPath?: string, breadcrumbs?: string[]) => React.ReactNode[];
 /**
  * 渲染应用路由
  * @param routes

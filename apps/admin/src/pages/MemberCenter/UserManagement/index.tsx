@@ -17,26 +17,15 @@ import { BrowserRouterProps } from 'react-router-dom';
 import { useSize } from 'ahooks';
 import styles from './index.module.less';
 import dayjs from 'dayjs';
-import { getUsers } from 'services/api/user';
+import { getUsers ,UserDto} from 'services';
 import { debounce } from 'lodash';
 const { FormItem } = Form;
 
-interface User {
-  profile: null;
-  id: string;
-  phoneNumber: string;
-  status: string;
-  isSuperPal: boolean;
-  views: number;
-  achievementIds: string[];
-  chatroomIds: string[];
-  createdAt: string;
-  updatedAt: string;
-}
+
 
 const UserManager: React.FC<BrowserRouterProps> = () => {
   const [form] = Form.useForm();
-  const [dataSource, setDataSource] = useState<API.UserDto[]>([]);
+  const [dataSource, setDataSource] = useState<UserDto[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const onSubmit: FormProps['onSubmit'] = (e) => {
     console.log(e);
@@ -46,7 +35,7 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
   };
 
   const onReset: FormProps['onReset'] = (e) => {
-    fetchData(form.getFieldsValue([]));
+    fetchData(form?.getFieldsValue([]));
   };
   const asyncValidate: CustomValidator = (val) =>
     new Promise((resolve) => {
@@ -62,16 +51,18 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
   const handleChange = useRef(
     debounce((value) => {
       console.log('value', value);
-      form.validate({ fields: ['password'], trigger: 'blur' });
+      form?.validate({ fields: ['password'], trigger: 'blur' });
     }, 500),
   ).current;
 
   const fetchData = async (options?: any) => {
     try {
       setIsLoading(true);
-      const result = await getUsers(options);
-      setDataSource(result.data);
-      setIsLoading(false);
+      const { data } = await getUsers(options);
+      if (data) {
+        setDataSource(data);
+        setIsLoading(false);
+      }
     } catch (error) {
       console.error('请求失败，请稍后重试', error);
       setIsLoading(false);
@@ -177,7 +168,7 @@ const UserManager: React.FC<BrowserRouterProps> = () => {
             </Button>
           </FormItem>
         </Form>
-        <Table<API.UserDto>
+        <Table
           loading={isLoading}
           data={dataSource}
           columns={columns}

@@ -23,4 +23,4 @@ package-lock.json
 
 # code editor setting
 /.vscode
-/src/services/*
+/src/api
